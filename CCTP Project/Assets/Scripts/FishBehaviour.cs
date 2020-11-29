@@ -13,6 +13,9 @@ public class FishBehaviour : MonoBehaviour
     [SerializeField] private float speed;
     [SerializeField] bool turning;
 
+    public float gs;
+    public float grpsz;
+
     GameObject fishDestinationTarget;
 
     private void Start()
@@ -22,12 +25,25 @@ public class FishBehaviour : MonoBehaviour
 
         speed = Random.Range(manager.minSpeed, manager.maxSpeed);
 
-        InvokeRepeating("ApplyBoidsRules", 0, 0.05f);
+        //InvokeRepeating("ApplyBoidsRules", 0, 0.05f);
     }
 
     private void Update()
     {
        Movement();
+
+        if (!turning)
+        {
+            if (Random.Range(0, 100) < 10)
+            {
+                speed = Random.Range(manager.minSpeed, manager.maxSpeed);
+            }
+
+            if (Random.Range(0, 100) < 20)
+            {
+                ApplyBoidsRules();
+            }
+        }
     }
 
     void Movement()
@@ -36,7 +52,7 @@ public class FishBehaviour : MonoBehaviour
         Bounds bounds = new Bounds(manager.transform.position, manager.bounds * 2);
 
         RaycastHit hit;
-        Vector3 direction = Vector3.zero;
+        Vector3 direction = fishDestinationTarget.transform.position - transform.position;
 
         if (!bounds.Contains(transform.position)) // Checks if fish is out of bounds
         {
@@ -44,12 +60,12 @@ public class FishBehaviour : MonoBehaviour
             direction = fishDestinationTarget.transform.position - transform.position; // Set direction of out of bounds fish to be towards target
         }
 
-        else if (Physics.Raycast(transform.position, this.transform.forward * 25, out hit)) // Checks if fish is going to hit an object
+        else if (Physics.Raycast(transform.position, this.transform.forward * 0.5f, out hit)) // Checks if fish is going to hit an object
         {
             turning = true;
             direction = Vector3.Reflect(this.transform.forward, hit.normal); //Deflects the fish away from the object it is going to hit by reflecting the angle in a "<" like fashion (incoming angle at the top, reflected towards the bottom for example)
 
-            Debug.DrawRay(this.transform.position, this.transform.forward * 25, Color.red);
+            Debug.DrawRay(this.transform.position, this.transform.forward * 0.5f, Color.red);
         }
 
         else
@@ -62,7 +78,7 @@ public class FishBehaviour : MonoBehaviour
             transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(direction), manager.rotationSpeed * Time.deltaTime); // A variation of the regular rotation behaviour that just turns towards the centre of the box
         }
 
-        transform.Translate(0, 0, speed * Time.deltaTime);
+        transform.Translate(0, 0, speed * Time.deltaTime); // Moves the fish
     }
 
     // Apply the rules for boids to each fish to enact the relevant behaviour
@@ -78,6 +94,9 @@ public class FishBehaviour : MonoBehaviour
             float globalSpeed = 0.01f; // Average group speed
             float neighbourDistancce; // Distance from nearest neighbour
             int localGroupSize = 0; // Size of the local group of this particular fish
+            
+            gs = globalSpeed;
+            grpsz = localGroupSize;
 
             foreach (GameObject fish in fishArray)
             {
