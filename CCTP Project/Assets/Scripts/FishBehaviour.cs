@@ -13,9 +13,8 @@ public class FishBehaviour : MonoBehaviour
     [SerializeField] private float speed;
     [SerializeField] bool turning;
 
-    public float gs;
-    public float grpsz;
 
+    public float neighbourDistance; // Distance from nearest neighbour
     GameObject fishDestinationTarget;
 
     private void Start()
@@ -86,30 +85,27 @@ public class FishBehaviour : MonoBehaviour
     {
         if (!turning) // Only applies the rules so long as the fish is not turning away from the outer wall
         {
-            GameObject[] fishArray;
+            List<GameObject>
+ fishArray;
             fishArray = manager.allFish;
 
             Vector3 averageCentre = Vector3.zero; // Average centre of the group calculated from each member of the group
             Vector3 averageAvoid = Vector3.zero; // Average avoidance vector of each member of the group
             float globalSpeed = 0.01f; // Average group speed
-            float neighbourDistancce; // Distance from nearest neighbour
             int localGroupSize = 0; // Size of the local group of this particular fish
-            
-            gs = globalSpeed;
-            grpsz = localGroupSize;
 
             foreach (GameObject fish in fishArray)
             {
                 if (fish != this.gameObject)
                 {
-                    neighbourDistancce = Vector3.Distance(fish.transform.position, this.transform.position);
+                    neighbourDistance = Vector3.Distance(fish.transform.position, this.transform.position);
 
-                    if (neighbourDistancce <= manager.distanceToNeighbours)
+                    if (neighbourDistance <= manager.distanceToNeighbours)
                     {
                         averageCentre += fish.transform.position;
                         localGroupSize++;
 
-                        if (neighbourDistancce < 1.0f) // How close each fish should be before they should begin avoiding
+                        if (neighbourDistance < 1.0f) // How close each fish should be before they should begin avoiding
                         {
                             averageAvoid = averageAvoid + (this.transform.position - fish.transform.position);
                         }
@@ -134,5 +130,10 @@ public class FishBehaviour : MonoBehaviour
                 }
             }
         }
+    }
+
+    private void OnDestroy()
+    {
+        manager.allFish.Remove(this.gameObject);
     }
 }

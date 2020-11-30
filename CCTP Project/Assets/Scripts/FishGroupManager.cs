@@ -6,8 +6,9 @@ public class FishGroupManager : MonoBehaviour
 {
     [Header("Fish Spawning Setup")]
     public GameObject fishPrefab; // Fish prefab
+    [Range(50.0f, 200.0f)]
     public int fishCount; // Number of fish to spawn
-    public GameObject[] allFish; // An array of all fish spawned into the scene
+    public List<GameObject> allFish = new List<GameObject>(); // An array of all fish spawned into the scene
     public Vector3 bounds; // The limtis of the area fish can swim in (AUTO ADJUST TO TERRAIN SIZE LATER)
 
     [Header("Fish Behaviour Setup")] // MAKE ALL OF THIS STUFF APPEAR IN UI
@@ -23,7 +24,7 @@ public class FishGroupManager : MonoBehaviour
 
     private void Start()
     {
-        allFish = new GameObject[fishCount]; // Sets the array equal to desired number of fish
+        //allFish = new GameObject[fishCount]; // Sets the array equal to desired number of fish
         fishDestinationTarget = GameObject.FindGameObjectWithTag("Target");
 
         for (int i = 0; i < fishCount; i++)
@@ -32,7 +33,7 @@ public class FishGroupManager : MonoBehaviour
                                                 Random.Range(-bounds.y, bounds.y),
                                                 Random.Range(-bounds.z, bounds.z));
 
-            allFish[i] = Instantiate(fishPrefab, spawnPosition, Quaternion.identity); // Instantiate the fish at that position and add it to the array
+            allFish.Add(Instantiate(fishPrefab, spawnPosition, Quaternion.identity)); // Instantiate the fish at that position and add it to the array
         }
     }
     

@@ -91,6 +91,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4729491757996040651}
   - component: {fileID: 8183151899852279115}
+  - component: {fileID: 40109371058067579}
   m_Layer: 0
   m_Name: Fish
   m_TagString: Untagged
@@ -128,3 +129,18 @@ MonoBehaviour:
   manager: {fileID: 0}
   speed: 0
   turning: 0
+  neighbourDistance: 0
+--- !u!136 &40109371058067579
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5397941417723935601}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  m_Radius: 10
+  m_Height: 90
+  m_Direction: 2
+  m_Center: {x: 0, y: 0, z: 0}
