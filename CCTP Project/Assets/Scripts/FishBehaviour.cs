@@ -12,9 +12,8 @@ public class FishBehaviour : MonoBehaviour
     [SerializeField] private FishGroupManager manager;
     [SerializeField] private float speed;
     [SerializeField] bool turning;
-
-
     public float neighbourDistance; // Distance from nearest neighbour
+
     GameObject fishDestinationTarget;
 
     private void Start()
@@ -29,7 +28,8 @@ public class FishBehaviour : MonoBehaviour
 
     private void Update()
     {
-       Movement();
+        Movement();
+        SharkAvoidance();
 
         if (!turning)
         {
@@ -41,6 +41,18 @@ public class FishBehaviour : MonoBehaviour
             if (Random.Range(0, 100) < 20)
             {
                 ApplyBoidsRules();
+            }
+        }
+    }
+
+    void SharkAvoidance()
+    {
+        Collider[] overlappedObjects = Physics.OverlapSphere(transform.position, manager.awarenessRange);
+        foreach (Collider overlappedObject in overlappedObjects)
+        {
+            if(overlappedObject.CompareTag("Shark"))
+            {
+
             }
         }
     }
@@ -85,8 +97,7 @@ public class FishBehaviour : MonoBehaviour
     {
         if (!turning) // Only applies the rules so long as the fish is not turning away from the outer wall
         {
-            List<GameObject>
- fishArray;
+            List<GameObject>fishArray;
             fishArray = manager.allFish;
 
             Vector3 averageCentre = Vector3.zero; // Average centre of the group calculated from each member of the group

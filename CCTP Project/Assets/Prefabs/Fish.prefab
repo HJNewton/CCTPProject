@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 1840628930304503121}
   - component: {fileID: 7518785925671073347}
   - component: {fileID: 6227490849305420619}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Geo_Salmon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -90,9 +90,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4729491757996040651}
-  - component: {fileID: 8183151899852279115}
   - component: {fileID: 40109371058067579}
-  m_Layer: 0
+  - component: {fileID: 8183151899852279115}
+  m_Layer: 2
   m_Name: Fish
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -114,6 +114,20 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!136 &40109371058067579
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5397941417723935601}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  m_Radius: 10
+  m_Height: 90
+  m_Direction: 2
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &8183151899852279115
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -130,17 +144,3 @@ MonoBehaviour:
   speed: 0
   turning: 0
   neighbourDistance: 0
---- !u!136 &40109371058067579
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5397941417723935601}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  m_Radius: 10
-  m_Height: 90
-  m_Direction: 2
-  m_Center: {x: 0, y: 0, z: 0}

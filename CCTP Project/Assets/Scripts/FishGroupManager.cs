@@ -20,6 +20,8 @@ public class FishGroupManager : MonoBehaviour
     public float distanceToNeighbours; // Gets the maximum distance in which each fish can find a new neighbour
     [Range(0.0f, 10.0f)]
     public float rotationSpeed;
+    [Range(0.0f, 10.0f)]
+    public float awarenessRange;
     public GameObject fishDestinationTarget;
 
     private void Start()
@@ -36,5 +38,4 @@ public class FishGroupManager : MonoBehaviour
             allFish.Add(Instantiate(fishPrefab, spawnPosition, Quaternion.identity)); // Instantiate the fish at that position and add it to the array
         }
     }
-    
 }
