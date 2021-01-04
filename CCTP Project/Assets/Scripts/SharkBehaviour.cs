@@ -22,7 +22,7 @@ public class SharkBehaviour : MonoBehaviour
 
     private void Start()
     {
-        sharkManager = GameObject.FindGameObjectWithTag("SharkManager").GetComponent<SharkGroupManager>(); // Fetches the Fish Group Manager script from the Fish Manager object
+        sharkManager = GameObject.FindGameObjectWithTag("SharkManager").GetComponent<SharkGroupManager>(); // Fetches the Shark Group Manager script from the Shark Manager object
         fishManager = GameObject.FindGameObjectWithTag("FishManager").GetComponent<FishGroupManager>(); // Fetches the Fish Group Manager script from the Fish Manager object
         speed = Random.Range(sharkManager.minSpeed, sharkManager.maxSpeed);
 

@@ -8,6 +8,7 @@ TagManager:
   - Target
   - SharkManager
   - Shark
+  - Fish
   layers:
   - Default
   - TransparentFX
