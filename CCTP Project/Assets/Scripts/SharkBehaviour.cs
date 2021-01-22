@@ -16,6 +16,7 @@ public class SharkBehaviour : MonoBehaviour
     [SerializeField] GameObject target;
     public GameObject centre;
     public float eatRadius;
+    public float obstacleAvoidanceRange;
     public LayerMask sharkLayer;
     
     [SerializeField] float outlierDistance;
@@ -60,24 +61,24 @@ public class SharkBehaviour : MonoBehaviour
             UpdateTarget();
         }
 
-        // Generates a bounds that the fish should stay inside of
+        // Generates a bounds that the shark should stay inside of
         Bounds bounds = new Bounds(sharkManager.transform.position, fishManager.bounds * 2);
 
         RaycastHit hit;
         Vector3 direction = target.transform.position - transform.position;
 
-        if (!bounds.Contains(transform.position)) // Checks if fish is out of bounds
+        if (!bounds.Contains(transform.position)) // Checks if shark is out of bounds
         {
             turning = true;
-            direction = target.transform.position - transform.position; // Set direction of out of bounds fish to be towards target
+            direction = target.transform.position - transform.position; // Set direction of out of bounds shark to be towards target
         }
 
-        else if (Physics.Raycast(transform.position, this.transform.forward * 2, out hit, sharkLayer)) // Checks if fish is going to hit an object
+        else if (Physics.Raycast(transform.position, this.transform.forward, out hit, obstacleAvoidanceRange, sharkLayer)) // Checks if shark is going to hit an object
         {
             turning = true;
-            direction = Vector3.Reflect(this.transform.forward, hit.normal); //Deflects the fish away from the object it is going to hit by reflecting the angle in a "<" like fashion (incoming angle at the top, reflected towards the bottom for example)
+            direction = Vector3.Reflect(this.transform.forward, hit.normal); //Deflects the shark away from the object it is going to hit by reflecting the angle in a "<" like fashion (incoming angle at the top, reflected towards the bottom for example)
 
-            Debug.DrawRay(this.transform.position, this.transform.forward * 2, Color.red);
+            Debug.DrawRay(this.transform.position, this.transform.forward * obstacleAvoidanceRange, Color.red);
         }
 
         else
@@ -95,7 +96,7 @@ public class SharkBehaviour : MonoBehaviour
             transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(direction), sharkManager.rotationSpeed * Time.deltaTime);
         }
 
-        transform.Translate(0, 0, speed * Time.deltaTime); // Moves the fish
+        transform.Translate(0, 0, speed * Time.deltaTime); // Moves the shark
     }
 
     void UpdateTarget()

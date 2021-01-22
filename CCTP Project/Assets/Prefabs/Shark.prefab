@@ -75,12 +75,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5c1ccfd6a7f396442b9e974bc53b0999, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  manager: {fileID: 0}
+  sharkManager: {fileID: 0}
+  fishManager: {fileID: 0}
   speed: 0
   turning: 0
   target: {fileID: 0}
   centre: {fileID: 1258676108}
   eatRadius: 1
+  obstacleAvoidanceRange: 2
   sharkLayer:
     serializedVersion: 2
     m_Bits: 4
@@ -97,7 +99,7 @@ GameObject:
   - component: {fileID: 2295653094082823108}
   - component: {fileID: 3386274204360271696}
   m_Layer: 2
-  m_Name: default
+  m_Name: Shark Model
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

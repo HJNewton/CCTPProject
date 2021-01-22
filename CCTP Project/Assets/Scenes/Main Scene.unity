@@ -300,7 +300,7 @@ Transform:
   m_LocalScale: {x: 3, y: 1, z: 3}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &532498404
 GameObject:
@@ -366,7 +366,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 10
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &630349552
 GameObject:
@@ -397,7 +397,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &630349554
 MonoBehaviour:
@@ -412,7 +412,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sharkPrefab: {fileID: 3762484337191817580, guid: 677f1f49c0613ff4897fbdf0a50e2f9a, type: 3}
-  sharkCount: 2
+  sharkCount: 0
   spawnDelay: 10
   allSharks: []
   minSpeed: 1
@@ -509,7 +509,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
 --- !u!1 &955019659
 GameObject:
@@ -556,7 +556,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &955019662
 MonoBehaviour:
@@ -716,7 +716,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1079761854
 GameObject:
@@ -881,7 +881,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1409506774
 MonoBehaviour:
@@ -898,9 +898,12 @@ MonoBehaviour:
   coralPrefab: {fileID: 993556125722728525, guid: e05b89ac8bb189f4fba4af23f1117a84, type: 3}
   coralCount: 10
   allCoral: []
-  kelpPrefab: {fileID: 5415278996103488255, guid: a221dc9e23535e94db08213245f03d45, type: 3}
+  kelpPrefab: {fileID: 2337017523892700634, guid: 31e04f653d7f4014fa7a41e0f14bc540, type: 3}
   kelpCount: 10
   allKelp: []
+  timeBetweenSpawnsLowerRange: 0
+  timeBetweenSpawnsUpperRange: 0
+  timeBetweenSpawns: 0
 --- !u!1 &1628419656
 GameObject:
   m_ObjectHideFlags: 0
@@ -912,7 +915,7 @@ GameObject:
   - component: {fileID: 1628419658}
   - component: {fileID: 1628419657}
   m_Layer: 0
-  m_Name: Fish Target
+  m_Name: -- Fish Target --
   m_TagString: Target
   m_Icon: {fileID: 7174288486110832750, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
@@ -943,7 +946,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 11
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1686271191
 GameObject:
@@ -996,7 +999,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1691442734
 GameObject:
@@ -1126,5 +1129,5 @@ Transform:
   m_Children:
   - {fileID: 1691442735}
   m_Father: {fileID: 0}
-  m_RootOrder: 9
+  m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

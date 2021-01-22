@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 7518785925671073347}
   - component: {fileID: 6227490849305420619}
   m_Layer: 2
-  m_Name: Geo_Salmon
+  m_Name: Fish Model
   m_TagString: Fish
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -162,6 +162,8 @@ MonoBehaviour:
   speed: 0
   turning: 0
   neighbourDistance: 0
+  obstacleAvoidanceRange: 1
+  isDebugging: 0
 --- !u!114 &6743514649941562778
 MonoBehaviour:
   m_ObjectHideFlags: 0

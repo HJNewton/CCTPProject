@@ -8,11 +8,13 @@ public class FishBehaviour : MonoBehaviour
     // Enum states for roaming, eating and reproducing
     // Only apply rules when roaming; eating and reproducing should be seperate behaviour that potentially makes them vulnerable
 
-    [Header("Fish Speed")]
+    [Header("Fish Setup")]
     [SerializeField] private FishGroupManager manager;
     [SerializeField] private float speed;
     [SerializeField] bool turning;
     public float neighbourDistance; // Distance from nearest neighbour
+    public float obstacleAvoidanceRange;
+    public bool isDebugging = false;
 
     GameObject fishDestinationTarget;
 
@@ -38,7 +40,7 @@ public class FishBehaviour : MonoBehaviour
                 speed = Random.Range(manager.minSpeed, manager.maxSpeed);
             }
 
-            if (Random.Range(0, 100) < 20)
+            if (Random.Range(0, 100) < 20) // Chance to apply boids rules
             {
                 ApplyBoidsRules();
             }
@@ -52,7 +54,7 @@ public class FishBehaviour : MonoBehaviour
         {
             if(overlappedObject.CompareTag("Shark"))
             {
-
+                // AVOIDANCE BEHAVIOURS
             }
         }
     }
@@ -71,12 +73,15 @@ public class FishBehaviour : MonoBehaviour
             direction = fishDestinationTarget.transform.position - transform.position; // Set direction of out of bounds fish to be towards target
         }
 
-        else if (Physics.Raycast(transform.position, this.transform.forward * 0.5f, out hit)) // Checks if fish is going to hit an object
+        else if (Physics.Raycast(transform.position, this.transform.forward, out hit, obstacleAvoidanceRange)) // Checks if fish is going to hit an object
         {
-            turning = true;
-            direction = Vector3.Reflect(this.transform.forward, hit.normal); //Deflects the fish away from the object it is going to hit by reflecting the angle in a "<" like fashion (incoming angle at the top, reflected towards the bottom for example)
+            if (hit.transform.gameObject.layer != LayerMask.GetMask("Ignore Raycast"))
+            {
+                turning = true;
+                direction = Vector3.Reflect(this.transform.forward, hit.normal); //Deflects the fish away from the object it is going to hit by reflecting the angle in a "<" like fashion (incoming angle at the top, reflected towards the bottom for example)
 
-            Debug.DrawRay(this.transform.position, this.transform.forward * 0.5f, Color.red);
+                Debug.DrawRay(this.transform.position, this.transform.forward * obstacleAvoidanceRange, Color.red);
+            }
         }
 
         else
@@ -131,7 +136,7 @@ public class FishBehaviour : MonoBehaviour
             {
                 averageCentre = averageCentre / localGroupSize + (manager.fishDestinationTarget.transform.position - this.transform.position); // Gets the centre of the local group and moves it towards the target
                 speed = globalSpeed / localGroupSize; // Matches fish speed with global speed
-                //speed = Random.Range(manager.minSpeed, manager.maxSpeed);
+                // speed = Random.Range(manager.minSpeed, manager.maxSpeed);
 
                 Vector3 direction = (averageCentre + averageAvoid) - transform.position;
 
