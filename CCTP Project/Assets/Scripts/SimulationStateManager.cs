@@ -40,7 +40,12 @@ public class SimulationStateManager : MonoBehaviour
     public TextMeshProUGUI fishMinSpeedText;
     public Slider fishMaxSpeedSlider;
     public TextMeshProUGUI fishMaxSpeedText;
-
+    public Slider fishNeighbourDistanceSlider;
+    public TextMeshProUGUI fishNeighbourDistanceText;
+    public Slider fishRotationSpeedSlider;
+    public TextMeshProUGUI fishRotationSpeedText;
+    public Slider fishAwarenessRangeSlider;
+    public TextMeshProUGUI fishAwarenessRangeText;
 
     private void Awake()
     {
@@ -82,6 +87,11 @@ public class SimulationStateManager : MonoBehaviour
         }
     }
 
+    public void StartSimulation()
+    {
+        currentState = CurrentSimState.InSim;
+    }
+
     void UpdateEnvironmentValues()
     {
         environmentManager.coralCount = (int)coralSlider.value; // Set coral count equal to the value of the coral slider casted to an int
@@ -101,5 +111,14 @@ public class SimulationStateManager : MonoBehaviour
 
         fishManager.maxSpeed = fishMaxSpeedSlider.value; // Set fish max speed equal to the value of the fish max speed slider
         fishMaxSpeedText.text = fishManager.maxSpeed.ToString();
+
+        fishManager.distanceToNeighbours = fishNeighbourDistanceSlider.value; // Set fish distance to keep from neighbours
+        fishNeighbourDistanceText.text = fishManager.distanceToNeighbours.ToString();
+
+        fishManager.rotationSpeed = fishRotationSpeedSlider.value; // Set fish rotation speed
+        fishRotationSpeedText.text = fishManager.rotationSpeed.ToString();
+
+        fishManager.awarenessRange = fishAwarenessRangeSlider.value; // Set fish awareness range for sharks in range
+        fishAwarenessRangeText.text = fishManager.awarenessRange.ToString();
     }
 }
