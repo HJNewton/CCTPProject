@@ -9,6 +9,7 @@ TagManager:
   - SharkManager
   - Shark
   - Fish
+  - SimulationStateManager
   layers:
   - Default
   - TransparentFX
