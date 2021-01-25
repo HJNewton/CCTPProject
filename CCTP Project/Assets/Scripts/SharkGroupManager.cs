@@ -9,7 +9,7 @@ public class SharkGroupManager : MonoBehaviour
     [Range(0.0f, 10.0f)]
     public int sharkCount; // Number of fish to spawn
     public float spawnDelay; // Delay before shark spawn
-    public List<GameObject> allSharks = new List<GameObject>(); // An array of all fish spawned into the scene
+    public List<GameObject> allSharks = new List<GameObject>(); // An array of all sharks spawned into the scene
 
     [Header("Shark Behaviour Setup")] // MAKE ALL OF THIS STUFF APPEAR IN UI
     [Range(0.0f, 5.0f)]
@@ -17,7 +17,7 @@ public class SharkGroupManager : MonoBehaviour
     [Range(0.0f, 5.0f)]
     public float maxSpeed;
     [Range(0.0f, 10.0f)]
-    public float eatRadius; // Gets the maximum distance in which each fish can find a new neighbour
+    public float eatRadius; // Gets the maximum distance in which each shark can 
     [Range(0.0f, 10.0f)]
     public float rotationSpeed;
 

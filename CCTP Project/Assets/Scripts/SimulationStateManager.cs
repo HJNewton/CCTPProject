@@ -47,6 +47,18 @@ public class SimulationStateManager : MonoBehaviour
     public Slider fishAwarenessRangeSlider;
     public TextMeshProUGUI fishAwarenessRangeText;
 
+    [Header("Shark Manager UI Elements")]
+    public Slider sharkCountSlider;
+    public TextMeshProUGUI sharkCountText;
+    public Slider sharkMinSpeedSlider;
+    public TextMeshProUGUI sharkMinSpeedText;
+    public Slider sharkMaxSpeedSlider;
+    public TextMeshProUGUI sharkMaxSpeedText;
+    public Slider sharkRotationSpeedSlider;
+    public TextMeshProUGUI sharkRotationSpeedText;
+    public Slider sharkEatRadiusSlider;
+    public TextMeshProUGUI sharkEatRadiusText;
+
     private void Awake()
     {
         currentState = CurrentSimState.PreSim; // Sets the initial state of the sim to be pre-sim.
@@ -84,6 +96,7 @@ public class SimulationStateManager : MonoBehaviour
 
             UpdateEnvironmentValues();
             UpdateFishValues();
+            UpdateSharkValues();
         }
     }
 
@@ -120,5 +133,24 @@ public class SimulationStateManager : MonoBehaviour
 
         fishManager.awarenessRange = fishAwarenessRangeSlider.value; // Set fish awareness range for sharks in range
         fishAwarenessRangeText.text = fishManager.awarenessRange.ToString();
+    }
+
+    void UpdateSharkValues()
+    {
+        sharkManager.sharkCount = (int)sharkCountSlider.value; // Set shark count equal to the value of the shark slider casted to an int
+        sharkCountText.text = sharkManager.sharkCount.ToString();
+
+        sharkManager.minSpeed = sharkMinSpeedSlider.value; // Set shark min speed equal to the value of the shark min speed slider
+        sharkMinSpeedText.text = sharkManager.minSpeed.ToString();
+
+        sharkManager.maxSpeed = sharkMaxSpeedSlider.value; // Set shark max speed equal to the value of the shark max speed slider
+        sharkMaxSpeedText.text = sharkManager.maxSpeed.ToString();
+
+        sharkManager.rotationSpeed = sharkRotationSpeedSlider.value; // Set shark rotation speed equal to the value of the shark rotation speed slider
+        sharkRotationSpeedText.text = sharkManager.rotationSpeed.ToString();
+
+        sharkManager.eatRadius = sharkEatRadiusSlider.value; // Set distance the shark can find a new target to eat
+        sharkEatRadiusText.text = sharkManager.eatRadius.ToString();
+
     }
 }
