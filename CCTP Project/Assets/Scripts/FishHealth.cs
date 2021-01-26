@@ -4,7 +4,9 @@ using UnityEngine;
 
 public class FishHealth : MonoBehaviour
 {
-    public float currentFoodAmount = 2000;
+    [Header("Fish Food Stuff")]
+    public float currentFoodAmount = 200;
+    public float hungerRate; // Hunger rate determines how much food is removed per second
 
     void Update()
     {
@@ -18,7 +20,7 @@ public class FishHealth : MonoBehaviour
 
     void RemoveFood()
     {
-        currentFoodAmount -= Time.deltaTime;
+        currentFoodAmount -= hungerRate * Time.deltaTime;
 
         if (currentFoodAmount <= 0)
         {

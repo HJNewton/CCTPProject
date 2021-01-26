@@ -157,5 +157,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   triggerRange: 1.5
-  foodToGive: 2000
+  foodToGive: 200
   canBeEaten: 0

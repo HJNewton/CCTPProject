@@ -176,4 +176,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c608168f86a37a343bb52164c5f8b0a7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentFoodAmount: 2000
+  currentFoodAmount: 200
+  hungerRate: 2
