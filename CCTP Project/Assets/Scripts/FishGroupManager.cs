@@ -8,7 +8,7 @@ public class FishGroupManager : MonoBehaviour
     public GameObject fishPrefab; // Fish prefab
     [Range(50.0f, 200.0f)]
     public int fishCount; // Number of fish to spawn
-    public List<GameObject> allFish = new List<GameObject>(); // An array of all fish spawned into the scene
+    public List<GameObject> allFish = new List<GameObject>(); // A list of all fish spawned into the scene
     public Vector3 bounds; // The limtis of the area fish can swim in (AUTO ADJUST TO TERRAIN SIZE LATER)
 
     [Header("Fish Behaviour Setup")] // MAKE ALL OF THIS STUFF APPEAR IN UI

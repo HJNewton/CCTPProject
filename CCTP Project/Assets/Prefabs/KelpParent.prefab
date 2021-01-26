@@ -45,7 +45,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isGrowing: 0
-  growingSpeed: 0.1
+  growingSpeed: 0.05
   targetScale: {x: 0, y: 0, z: 0}
 --- !u!1001 &3587695990302249191
 PrefabInstance:

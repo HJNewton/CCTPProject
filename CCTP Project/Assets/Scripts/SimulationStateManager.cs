@@ -151,6 +151,5 @@ public class SimulationStateManager : MonoBehaviour
 
         sharkManager.eatRadius = sharkEatRadiusSlider.value; // Set distance the shark can find a new target to eat
         sharkEatRadiusText.text = sharkManager.eatRadius.ToString();
-
     }
 }
