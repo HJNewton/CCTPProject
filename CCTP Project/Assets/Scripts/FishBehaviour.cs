@@ -7,6 +7,14 @@ public class FishBehaviour : MonoBehaviour
     // Functionality to add:
     // Enum states for roaming, eating and reproducing
     // Only apply rules when roaming; eating and reproducing should be seperate behaviour that potentially makes them vulnerable
+    public enum FishState
+    {
+        Roaming,
+        Avoiding,
+        Feeding,
+        ReadyToReproduce,
+        Reproducing,
+    }
 
     [Header("Fish Setup")]
     [SerializeField] private FishGroupManager manager;
@@ -15,25 +23,51 @@ public class FishBehaviour : MonoBehaviour
     public float neighbourDistance; // Distance from nearest neighbour
     public float obstacleAvoidanceRange;
     public bool isDebugging = false;
+    public GameObject fishDestinationTarget;
 
-    GameObject fishDestinationTarget;
+    [Header("Fish States Setup")]
+    public FishState currentFishState;
+    [SerializeField] FishHealth fishHealth;
+    [SerializeField] float closestDistance;
+    [SerializeField] float gestationPeriod;
 
-    private void Start()
+
+    Vector3 direction;
+
+    GameObject movingTarget;
+
+    private void Awake()
     {
         manager = GameObject.FindGameObjectWithTag("FishManager").GetComponent<FishGroupManager>(); // Fetches the Fish Group Manager script from the Fish Manager object
         fishDestinationTarget = GameObject.FindGameObjectWithTag("Target");
+        fishHealth = this.GetComponent<FishHealth>();
 
+        currentFishState = FishState.Roaming;
+    }
+
+    private void Start()
+    {
         speed = Random.Range(manager.minSpeed, manager.maxSpeed);
+        movingTarget = fishDestinationTarget;
 
+        GenerateNewGestationPeriod();
+        
         //InvokeRepeating("ApplyBoidsRules", 0, 0.05f);
     }
 
     private void Update()
     {
         Movement();
-        SharkAvoidance();
+        UpdateState();
+        CheckSurroundings();
+        Reproduction();
 
-        if (!turning)
+        if(Input.GetKeyDown(KeyCode.M))
+        {
+            currentFishState = FishState.ReadyToReproduce;
+        }
+
+        if (!turning && (currentFishState == FishState.Roaming || currentFishState == FishState.ReadyToReproduce)) // Only apply the boids rules if the fish is roaming
         {
             if (Random.Range(0, 100) < 10)
             {
@@ -44,28 +78,21 @@ public class FishBehaviour : MonoBehaviour
             {
                 ApplyBoidsRules();
             }
-        }
+        }        
     }
 
-    void SharkAvoidance()
+    void UpdateState()
     {
-        Collider[] overlappedObjects = Physics.OverlapSphere(transform.position, manager.awarenessRange);
-        foreach (Collider overlappedObject in overlappedObjects)
-        {
-            if(overlappedObject.CompareTag("Shark"))
-            {
-                // AVOIDANCE BEHAVIOURS
-            }
-        }
-    }
 
+    }
+  
     void Movement()
     {
         // Generates a bounds that the fish should stay inside of
         Bounds bounds = new Bounds(manager.transform.position, manager.bounds * 2);
 
         RaycastHit hit;
-        Vector3 direction = fishDestinationTarget.transform.position - transform.position;
+        direction = fishDestinationTarget.transform.position - transform.position;
 
         if (!bounds.Contains(transform.position)) // Checks if fish is out of bounds
         {
@@ -78,7 +105,7 @@ public class FishBehaviour : MonoBehaviour
             if (hit.transform.gameObject.layer != LayerMask.GetMask("Ignore Raycast"))
             {
                 turning = true;
-                direction = Vector3.Reflect(this.transform.forward, hit.normal); //Deflects the fish away from the object it is going to hit by reflecting the angle in a "<" like fashion (incoming angle at the top, reflected towards the bottom for example)
+                direction = Vector3.Reflect(this.transform.forward, hit.normal); // Deflects the fish away from the object it is going to hit by reflecting the angle in a "<" like fashion (incoming angle at the top, reflected towards the bottom for example)
 
                 Debug.DrawRay(this.transform.position, this.transform.forward * obstacleAvoidanceRange, Color.red);
             }
@@ -148,8 +175,82 @@ public class FishBehaviour : MonoBehaviour
         }
     }
 
+    void CheckSurroundings()
+    {
+        Collider[] overlappedObjects = Physics.OverlapSphere(transform.position, manager.awarenessRange);
+
+        foreach (Collider overlappedObject in overlappedObjects)
+        {
+            if (overlappedObject.CompareTag("Shark"))
+            {
+                SharkAvoidance(); // Do shark avoidance behaviour
+            }
+        }
+    }
+
+    void SharkAvoidance()
+    {
+
+    }
+
+    void Reproduction()
+    {
+        float tempDistance;
+
+        Collider[] overlappedObjects = Physics.OverlapSphere(transform.position, manager.awarenessRange);
+        
+        foreach (Collider overlappedObject in overlappedObjects)
+        {
+            if (overlappedObject.CompareTag("Fish"))
+            {
+                tempDistance = Vector3.Distance(transform.position, overlappedObject.transform.position); // Check distance for each fish between themself and the current fish
+
+                if (closestDistance == 0) // Ensures that closest distance has an initial value otherwise it can never be compared
+                {
+                    closestDistance = tempDistance;
+                }
+
+                if (tempDistance <= closestDistance) // Check if the new fish that is checked is closer than the most recent closest fish
+                {
+                    closestDistance = tempDistance;
+                }
+            }
+        }
+
+        if (closestDistance <= manager.awarenessRange && currentFishState == FishState.ReadyToReproduce) // Check if the fish has another fish nearby and this fish is ready to reproduce ADD CHECKS FOR FOOD AMOUNTS
+        {
+            currentFishState = FishState.Reproducing; // Change state to reproducing
+        }
+
+        if (currentFishState == FishState.Reproducing)
+        {
+            gestationPeriod -= Time.deltaTime; // Reduces the time to spawn another fish
+
+            if (gestationPeriod <= 0)
+            {
+                manager.allFish.Add(Instantiate(manager.fishPrefab, manager.GenerateNewSpawnPosition(), Quaternion.identity)); // Instantiate the fish at that position and add it to the listy 
+                Debug.Log("Reproduced");
+
+                GenerateNewGestationPeriod();
+                currentFishState = FishState.Roaming; // Change state back to roaming
+            }
+        }
+    }
+
+    float GenerateNewGestationPeriod()
+    {
+        gestationPeriod = Random.Range(5, 15); // Get reproductive timer on this fish
+
+        return gestationPeriod;
+    }
+
     private void OnDestroy()
     {
         manager.allFish.Remove(this.gameObject);
+    }
+
+    private void OnDrawGizmosSelected()
+    {
+        Gizmos.DrawWireSphere(transform.position, manager.awarenessRange);
     }
 }

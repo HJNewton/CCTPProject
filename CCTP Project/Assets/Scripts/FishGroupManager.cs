@@ -10,6 +10,7 @@ public class FishGroupManager : MonoBehaviour
     public int fishCount; // Number of fish to spawn
     public List<GameObject> allFish = new List<GameObject>(); // A list of all fish spawned into the scene
     public Vector3 bounds; // The limtis of the area fish can swim in (AUTO ADJUST TO TERRAIN SIZE LATER)
+    public Vector3 spawnPosition;
 
     [Header("Fish Behaviour Setup")] // MAKE ALL OF THIS STUFF APPEAR IN UI
     [Range(0.0f, 5.0f)]
@@ -31,11 +32,20 @@ public class FishGroupManager : MonoBehaviour
 
         for (int i = 0; i < fishCount; i++)
         {
-            Vector3 spawnPosition = new Vector3(Random.Range(-bounds.x, bounds.x), // Generate a random position in the set bounds
-                                                Random.Range(-bounds.y, bounds.y),
-                                                Random.Range(-bounds.z, bounds.z));
+            spawnPosition = new Vector3(Random.Range(-bounds.x, bounds.x), // Generate a random position in the set bounds
+                                        Random.Range(-bounds.y, bounds.y),
+                                        Random.Range(-bounds.z, bounds.z));
 
             allFish.Add(Instantiate(fishPrefab, spawnPosition, Quaternion.identity)); // Instantiate the fish at that position and add it to the array
         }
+    }
+
+    public Vector3 GenerateNewSpawnPosition()
+    {
+        spawnPosition = new Vector3(Random.Range(-bounds.x, bounds.x), // Generate a random position in the set bounds
+                                    Random.Range(-bounds.y, bounds.y),
+                                    Random.Range(-bounds.z, bounds.z));
+
+        return spawnPosition;
     }
 }

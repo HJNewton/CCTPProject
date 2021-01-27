@@ -105,10 +105,10 @@ public class SharkBehaviour : MonoBehaviour
 
         Debug.Log("Updating");
         
-        List<GameObject> fishArray;
-        fishArray = fishManager.allFish;
+        List<GameObject> fishList;
+        fishList = fishManager.allFish;
 
-        foreach (GameObject fish in fishArray)
+        foreach (GameObject fish in fishList)
         {
             if (fish)
             {
