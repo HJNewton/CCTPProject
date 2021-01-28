@@ -95,7 +95,7 @@ GameObject:
   - component: {fileID: 7714174449291397489}
   m_Layer: 2
   m_Name: Kelp
-  m_TagString: Untagged
+  m_TagString: Kelp
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

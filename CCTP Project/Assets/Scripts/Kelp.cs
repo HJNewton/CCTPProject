@@ -16,12 +16,15 @@ public class Kelp : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.CompareTag("Fish") && canBeEaten)
+        if (other.gameObject.CompareTag("Fish") && canBeEaten && other.GetComponent<FishBehaviour>().currentFishState == FishBehaviour.FishState.Feeding) // If object is a fish, kelp is ready to consume and fish is hungry
         {
             Debug.Log("Fish In Range");
 
             other.GetComponent<FishHealth>().AddFood(foodToGive);
-            Destroy(gameObject);
+            other.GetComponent<FishBehaviour>().fishDestinationTarget = other.GetComponent<FishBehaviour>().movingTarget;
+            other.GetComponent<FishBehaviour>().currentFishState = FishBehaviour.FishState.Roaming;
+
+            Destroy(gameObject, 3);
         }
     }
 }

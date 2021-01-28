@@ -5,8 +5,14 @@ using UnityEngine;
 public class FishHealth : MonoBehaviour
 {
     [Header("Fish Food Stuff")]
-    public float currentFoodAmount = 200;
+    public float initialFood = 200;
+    public float currentFoodAmount;
     public float hungerRate; // Hunger rate determines how much food is removed per second
+
+    private void Awake()
+    {
+        currentFoodAmount = initialFood;
+    }
 
     void Update()
     {

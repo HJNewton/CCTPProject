@@ -9292,6 +9292,7 @@ MonoBehaviour:
   fishCount: 100
   allFish: []
   bounds: {x: 14, y: 2, z: 14}
+  spawnPosition: {x: 0, y: 0, z: 0}
   minSpeed: 1
   maxSpeed: 2
   distanceToNeighbours: 6

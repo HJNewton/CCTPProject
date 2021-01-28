@@ -24,6 +24,7 @@ public class FishBehaviour : MonoBehaviour
     public float obstacleAvoidanceRange;
     public bool isDebugging = false;
     public GameObject fishDestinationTarget;
+    public GameObject movingTarget;
 
     [Header("Fish States Setup")]
     public FishState currentFishState;
@@ -34,7 +35,6 @@ public class FishBehaviour : MonoBehaviour
 
     Vector3 direction;
 
-    GameObject movingTarget;
 
     private void Awake()
     {
@@ -43,6 +43,8 @@ public class FishBehaviour : MonoBehaviour
         fishHealth = this.GetComponent<FishHealth>();
 
         currentFishState = FishState.Roaming;
+
+        Debug.Log("Spawned");
     }
 
     private void Start()
@@ -57,17 +59,27 @@ public class FishBehaviour : MonoBehaviour
 
     private void Update()
     {
+        if (fishDestinationTarget == null)
+        {
+            fishDestinationTarget = movingTarget;
+        }
+
         Movement();
         UpdateState();
         CheckSurroundings();
         Reproduction();
+
+        if (currentFishState == FishState.Feeding)
+        {
+            Feeding();
+        }
 
         if(Input.GetKeyDown(KeyCode.M))
         {
             currentFishState = FishState.ReadyToReproduce;
         }
 
-        if (!turning && (currentFishState == FishState.Roaming || currentFishState == FishState.ReadyToReproduce)) // Only apply the boids rules if the fish is roaming
+        if (!turning /*&& (currentFishState == FishState.Roaming || currentFishState == FishState.ReadyToReproduce || currentFishState == FishState.Feeding)*/) // Only apply the boids rules if the fish is roaming
         {
             if (Random.Range(0, 100) < 10)
             {
@@ -78,12 +90,23 @@ public class FishBehaviour : MonoBehaviour
             {
                 ApplyBoidsRules();
             }
-        }        
+        }
     }
 
     void UpdateState()
     {
+        // FISH FEEDING STATE SWITCH
+        if (fishHealth.currentFoodAmount <= (fishHealth.initialFood / 100 * 66) 
+            /*&& time == FEEDING TIME*/
+            /*&& not reproducing*/)
+        {
+            currentFishState = FishState.Feeding;
+        }
 
+        else if (fishHealth.currentFoodAmount > (fishHealth.initialFood / 100 * 66))
+        {
+            fishDestinationTarget = movingTarget;
+        }
     }
   
     void Movement()
@@ -92,6 +115,7 @@ public class FishBehaviour : MonoBehaviour
         Bounds bounds = new Bounds(manager.transform.position, manager.bounds * 2);
 
         RaycastHit hit;
+
         direction = fishDestinationTarget.transform.position - transform.position;
 
         if (!bounds.Contains(transform.position)) // Checks if fish is out of bounds
@@ -161,7 +185,7 @@ public class FishBehaviour : MonoBehaviour
 
             if (localGroupSize > 0)
             {
-                averageCentre = averageCentre / localGroupSize + (manager.fishDestinationTarget.transform.position - this.transform.position); // Gets the centre of the local group and moves it towards the target
+                averageCentre = averageCentre / localGroupSize + (/*manager.*/fishDestinationTarget.transform.position - this.transform.position); // Gets the centre of the local group and moves it towards the target
                 speed = globalSpeed / localGroupSize; // Matches fish speed with global speed
                 // speed = Random.Range(manager.minSpeed, manager.maxSpeed);
 
@@ -191,6 +215,27 @@ public class FishBehaviour : MonoBehaviour
     void SharkAvoidance()
     {
 
+    }
+
+    void Feeding()
+    {
+        GameObject[] kelpInScene;
+        kelpInScene = GameObject.FindGameObjectsWithTag("Kelp"); // Populate the list with all kelp in the scene
+        
+        float distance = Mathf.Infinity;
+        Vector3 currentPos = transform.position;
+
+        foreach (GameObject kelp in kelpInScene)
+        {
+            Vector3 difference = kelp.transform.position - currentPos;
+
+            float curDistance = difference.sqrMagnitude;
+
+            if(curDistance < distance) // If the kelp is closer than the last kelp then that is the new target kelp
+            {
+                fishDestinationTarget = kelp;
+            }
+        }
     }
 
     void Reproduction()

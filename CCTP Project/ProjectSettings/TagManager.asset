@@ -10,6 +10,7 @@ TagManager:
   - Shark
   - Fish
   - SimulationStateManager
+  - Kelp
   layers:
   - Default
   - TransparentFX
