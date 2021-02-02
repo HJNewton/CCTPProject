@@ -5,14 +5,17 @@ using UnityEngine;
 public class FishHealth : MonoBehaviour
 {
     [Header("Fish Health Stuff")]
+    public bool male;
+    public bool female;
     public float initialFood = 200;
     public float currentFoodAmount;
     public float hungerRate; // Hunger rate determines how much food is removed per second
     public float currentAge;
-    public float ageToDie;
+    public float ageToDieMin;
+    public float ageToDieMax;
+    [SerializeField] private float ageToDie;
     public float ageRate;
-
-    bool setReproduction;
+    public int timesReproduced;
 
     FishBehaviour fishBehaviour;
 
@@ -23,7 +26,19 @@ public class FishHealth : MonoBehaviour
         currentFoodAmount = initialFood;
 
         currentAge = 0;
-        ageToDie = Random.Range(500, 600);
+        ageToDie = Random.Range(ageToDieMin, ageToDieMax);
+
+        if(Random.value < 0.35f)
+        {
+            male = true;
+            female = false;
+        }
+
+        else
+        {
+            male = false;
+            female = true;
+        }
     }
 
     void Update()
@@ -51,10 +66,8 @@ public class FishHealth : MonoBehaviour
     {
         currentAge += ageRate * Time.deltaTime;
 
-        if (currentAge >= 200 && !setReproduction)
+        if (currentAge >= 200 && timesReproduced != 3 && female) // If the fish is of age, hasn't reproduced too many times and is a female
         {
-            setReproduction = true; 
-
             fishBehaviour.canReproduce = true;
         }
 

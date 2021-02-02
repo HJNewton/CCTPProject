@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class FishGroupManager : MonoBehaviour
 {
@@ -25,6 +26,9 @@ public class FishGroupManager : MonoBehaviour
     public float awarenessRange;
     public GameObject fishDestinationTarget;
 
+    [Header("Fish UI")]
+    public TextMeshProUGUI currentFishCountText;
+
     private void Start()
     {
         //allFish = new GameObject[fishCount]; // Sets the array equal to desired number of fish
@@ -38,6 +42,11 @@ public class FishGroupManager : MonoBehaviour
 
             allFish.Add(Instantiate(fishPrefab, spawnPosition, Quaternion.identity)); // Instantiate the fish at that position and add it to the array
         }
+    }
+
+    private void Update()
+    {
+        currentFishCountText.text = "Current Fish Count: " + allFish.Count.ToString();
     }
 
     public Vector3 GenerateNewSpawnPosition()

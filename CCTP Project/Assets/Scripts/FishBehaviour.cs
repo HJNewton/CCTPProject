@@ -153,19 +153,19 @@ public class FishBehaviour : MonoBehaviour
     {
         if (!turning) // Only applies the rules so long as the fish is not turning away from the outer wall
         {
-            List<GameObject>fishArray;
-            fishArray = manager.allFish;
+            List<GameObject>fishList;
+            fishList = manager.allFish;
 
             Vector3 averageCentre = Vector3.zero; // Average centre of the group calculated from each member of the group
             Vector3 averageAvoid = Vector3.zero; // Average avoidance vector of each member of the group
             float globalSpeed = 0.01f; // Average group speed
             int localGroupSize = 0; // Size of the local group of this particular fish
 
-            foreach (GameObject fish in fishArray)
+            foreach (GameObject fish in fishList)
             {
                 if (fish != this.gameObject)
                 {
-                    neighbourDistance = Vector3.Distance(fish.transform.position, this.transform.position);
+                    neighbourDistance = Vector3.Distance(fish.transform.position + (transform.localScale / 2), this.transform.position);
 
                     if (neighbourDistance <= manager.distanceToNeighbours)
                     {
@@ -276,6 +276,7 @@ public class FishBehaviour : MonoBehaviour
                 manager.allFish.Add(Instantiate(manager.fishPrefab, transform.position, Quaternion.identity)); // Instantiate the fish at that position and add it to the listy 
 
                 fishHealth.ModifyFood(reproductionCost); // How much food is removed upon reproduciton
+                fishHealth.timesReproduced++;
 
                 canReproduce = false;
 

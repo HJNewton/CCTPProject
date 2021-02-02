@@ -201,5 +201,6 @@ MonoBehaviour:
   currentFoodAmount: 0
   hungerRate: 2.5
   currentAge: 0
-  ageToDie: 0
+  ageToDieMin: 750
+  ageToDieMax: 1000
   ageRate: 2
