@@ -23,7 +23,7 @@ public class FishHealth : MonoBehaviour
         currentFoodAmount = initialFood;
 
         currentAge = 0;
-        ageToDie = Random.Range(375, 425);
+        ageToDie = Random.Range(500, 600);
     }
 
     void Update()

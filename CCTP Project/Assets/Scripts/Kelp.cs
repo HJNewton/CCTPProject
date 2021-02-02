@@ -40,8 +40,6 @@ public class Kelp : MonoBehaviour
         {
             timesEaten++;
 
-            Debug.Log("Fish In Range");
-
             other.GetComponent<FishHealth>().ModifyFood(foodToGive);
             other.GetComponent<FishBehaviour>().fishDestinationTarget = other.GetComponent<FishBehaviour>().movingTarget;
             other.GetComponent<FishBehaviour>().currentFishState = FishBehaviour.FishState.Roaming;
