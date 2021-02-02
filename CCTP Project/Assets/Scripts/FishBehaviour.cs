@@ -35,7 +35,11 @@ public class FishBehaviour : MonoBehaviour
     public float reproductionCost;
     [SerializeField] float closestDistance;
     [SerializeField] float gestationPeriod;
-    
+
+    [Header("Fish Avoidance Setup")]
+    public bool sharkInRange;
+
+    SphereCollider sphereCollider;
     Vector3 direction;
     private int currentFrame;
 
@@ -44,6 +48,9 @@ public class FishBehaviour : MonoBehaviour
         manager = GameObject.FindGameObjectWithTag("FishManager").GetComponent<FishGroupManager>(); // Fetches the Fish Group Manager script from the Fish Manager object
         fishDestinationTarget = GameObject.FindGameObjectWithTag("Target");
         fishHealth = this.GetComponent<FishHealth>();
+
+        sphereCollider = this.GetComponent<SphereCollider>();
+        sphereCollider.radius = 125;
 
         currentFishState = FishState.Roaming;
     }
@@ -67,7 +74,7 @@ public class FishBehaviour : MonoBehaviour
 
         Movement();
         UpdateState();
-        CheckSurroundings();
+        //CheckSurroundings();
         Reproduction();
 
         if (currentFishState == FishState.Feeding)
@@ -84,6 +91,23 @@ public class FishBehaviour : MonoBehaviour
             }
         }
     }
+
+    //private void OnTriggerStay(Collider other)
+    //{
+    //    if (other.CompareTag("Shark"))
+    //    {
+    //        sharkInRange = true;
+    //        SharkAvoidance(other.gameObject);
+    //    }
+    //}
+
+    //private void OnTriggerExit(Collider other)
+    //{
+    //    if (other.CompareTag("Shark"))
+    //    {
+    //        sharkInRange = false;
+    //    }
+    //}
 
     void UpdateState()
     {
@@ -134,6 +158,11 @@ public class FishBehaviour : MonoBehaviour
                 Debug.DrawRay(this.transform.position, this.transform.forward * obstacleAvoidanceRange, Color.red);
             }
         }
+
+        //if (sharkInRange)
+        //{
+        //    turning = true;
+        //}
 
         else
         {
@@ -199,23 +228,27 @@ public class FishBehaviour : MonoBehaviour
         }
     }
 
-    void CheckSurroundings()
-    {
-        Collider[] overlappedObjects = Physics.OverlapSphere(transform.position, manager.awarenessRange);
+    //void CheckSurroundings()
+    //{
+    //    Collider[] overlappedObjects = Physics.OverlapSphere(transform.position, manager.awarenessRange);
 
-        foreach (Collider overlappedObject in overlappedObjects)
-        {
-            if (overlappedObject.CompareTag("Shark"))
-            {
-                SharkAvoidance(); // Do shark avoidance behaviour
-            }
-        }
-    }
+    //    foreach (Collider overlappedObject in overlappedObjects)
+    //    {
+    //        if (overlappedObject.CompareTag("Shark"))
+    //        {
+    //            sharkInRange = true;
+    //        }
+    //    }
+    //}
 
-    void SharkAvoidance()
-    {
-
-    }
+    //void SharkAvoidance(GameObject sharkToAvoid)
+    //{
+    //    if (sharkInRange)
+    //    {
+    //        turning = true;
+    //        direction = Vector3.Reflect(this.transform.forward, sharkToAvoid.transform.position.normalized); // Deflects the fish away from the object it is going to hit by reflecting the angle in a "<" like fashion (incoming angle at the top, reflected towards the bottom for example)
+    //    }
+    //}
 
     void Feeding()
     {

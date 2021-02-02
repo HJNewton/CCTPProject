@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class EnvironmentManager : MonoBehaviour
 {
@@ -14,8 +15,9 @@ public class EnvironmentManager : MonoBehaviour
     public List<GameObject> allKelp = new List<GameObject>(); // A list of all kelp in the scene
 
     [Header("Kelp Respawning")]
-    public float timeBetweenSpawnsLowerRange;
-    public float timeBetweenSpawnsUpperRange;
+    public bool slow;
+    public bool medium;
+    public bool fast;
     [SerializeField] private float timeBetweenSpawns;
 
     Vector3 spawnPosition;
@@ -29,6 +31,11 @@ public class EnvironmentManager : MonoBehaviour
 
     private void Start()
     {
+        if (!medium && !fast)
+        {
+            slow = true;
+        }
+        
         fishManager = GameObject.FindGameObjectWithTag("FishManager").GetComponent<FishGroupManager>();
         
         // Randomly spawn a set amount of coral with a set size, this is essentially going to be the obstacle fish are forced to avoid
@@ -93,9 +100,46 @@ public class EnvironmentManager : MonoBehaviour
         return spawnPosition;
     }
 
+    public void DropdownValueHandle(int val)
+    {
+        if (val == 0)
+        {
+            slow = true;
+            medium = false;
+            fast = false;
+        }
+
+        if (val == 1)
+        {
+            slow = false;
+            medium = true;
+            fast = false;
+        }
+
+        if (val == 2)
+        {
+            slow = false;
+            medium = false;
+            fast = true;
+        }
+    }
+
     float GenerateNewTimeToSpawn()
     {
-        timeBetweenSpawns = Random.Range(timeBetweenSpawnsLowerRange, timeBetweenSpawnsUpperRange);
+        if (slow)
+        {
+            timeBetweenSpawns = Random.Range(10, 15);
+        }
+
+        if (medium)
+        {
+            timeBetweenSpawns = Random.Range(5, 10);
+        }
+
+        if (fast)
+        {
+            timeBetweenSpawns = Random.Range(3, 5);
+        }
 
         return timeBetweenSpawns;
     }

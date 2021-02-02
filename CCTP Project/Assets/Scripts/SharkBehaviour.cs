@@ -27,7 +27,7 @@ public class SharkBehaviour : MonoBehaviour
         fishManager = GameObject.FindGameObjectWithTag("FishManager").GetComponent<FishGroupManager>(); // Fetches the Fish Group Manager script from the Fish Manager object
         speed = Random.Range(sharkManager.minSpeed, sharkManager.maxSpeed);
 
-        Invoke("UpdateTarget", 0);
+        Invoke("UpdateTarget", 0); // Gets a target on start
         //InvokeRepeating("UpdateTarget", 0, 5f);
     }
 
@@ -45,9 +45,7 @@ public class SharkBehaviour : MonoBehaviour
         {
             if (overlappedObject.gameObject == target.gameObject) // Check if the overlapped object is the current target fish
             {
-                Debug.Log("Yum");
-
-                Destroy(overlappedObject.gameObject);
+                //Destroy(overlappedObject.gameObject);
 
                 UpdateTarget();
             }
@@ -102,8 +100,6 @@ public class SharkBehaviour : MonoBehaviour
     void UpdateTarget()
     {
         outlierDistance = 0;
-
-        Debug.Log("Updating");
         
         List<GameObject> fishList;
         fishList = fishManager.allFish;

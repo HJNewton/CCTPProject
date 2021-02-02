@@ -104,6 +104,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4729491757996040651}
   - component: {fileID: 40109371058067579}
+  - component: {fileID: 580736851276232676}
   - component: {fileID: 5820971954665577427}
   - component: {fileID: 8183151899852279115}
   - component: {fileID: 6743514649941562778}
@@ -142,6 +143,19 @@ CapsuleCollider:
   m_Radius: 10
   m_Height: 90
   m_Direction: 2
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!135 &580736851276232676
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5397941417723935601}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.5
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!54 &5820971954665577427
 Rigidbody:
@@ -185,6 +199,7 @@ MonoBehaviour:
   reproductionCost: -150
   closestDistance: 0
   gestationPeriod: 0
+  sharkInRange: 0
 --- !u!114 &6743514649941562778
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -197,10 +212,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c608168f86a37a343bb52164c5f8b0a7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  male: 0
+  female: 0
   initialFood: 500
   currentFoodAmount: 0
   hungerRate: 2.5
   currentAge: 0
   ageToDieMin: 750
   ageToDieMax: 1000
+  ageToDie: 0
   ageRate: 2
+  timesReproduced: 0
