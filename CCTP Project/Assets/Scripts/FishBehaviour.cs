@@ -29,12 +29,15 @@ public class FishBehaviour : MonoBehaviour
     [Header("Fish States Setup")]
     public FishState currentFishState;
     [SerializeField] FishHealth fishHealth;
+
+    [Header("Fish Reproduction Setup")]
+    public bool canReproduce;
+    public float reproductionCost;
     [SerializeField] float closestDistance;
     [SerializeField] float gestationPeriod;
-
-
+    
     Vector3 direction;
-
+    private int currentFrame;
 
     private void Awake()
     {
@@ -43,8 +46,6 @@ public class FishBehaviour : MonoBehaviour
         fishHealth = this.GetComponent<FishHealth>();
 
         currentFishState = FishState.Roaming;
-
-        Debug.Log("Spawned");
     }
 
     private void Start()
@@ -53,12 +54,12 @@ public class FishBehaviour : MonoBehaviour
         movingTarget = fishDestinationTarget;
 
         GenerateNewGestationPeriod();
-        
-        //InvokeRepeating("ApplyBoidsRules", 0, 0.05f);
     }
 
     private void Update()
     {
+        currentFrame++;
+
         if (fishDestinationTarget == null)
         {
             fishDestinationTarget = movingTarget;
@@ -73,22 +74,13 @@ public class FishBehaviour : MonoBehaviour
         {
             Feeding();
         }
-
-        if(Input.GetKeyDown(KeyCode.M))
+                
+        if (currentFrame >= 15) // Applies boids rules every 15 frames as long as the fish isnt turning
         {
-            currentFishState = FishState.ReadyToReproduce;
-        }
-
-        if (!turning /*&& (currentFishState == FishState.Roaming || currentFishState == FishState.ReadyToReproduce || currentFishState == FishState.Feeding)*/) // Only apply the boids rules if the fish is roaming
-        {
-            if (Random.Range(0, 100) < 10)
-            {
-                speed = Random.Range(manager.minSpeed, manager.maxSpeed);
-            }
-
-            if (Random.Range(0, 100) < 20) // Chance to apply boids rules
+            if(!turning)
             {
                 ApplyBoidsRules();
+                currentFrame = 0;
             }
         }
     }
@@ -96,7 +88,7 @@ public class FishBehaviour : MonoBehaviour
     void UpdateState()
     {
         // FISH FEEDING STATE SWITCH
-        if (fishHealth.currentFoodAmount <= (fishHealth.initialFood / 100 * 66) 
+        if (fishHealth.currentFoodAmount <= (fishHealth.initialFood / 100 * 66) // Hungry when it loses 1/3 of it's food
             /*&& time == FEEDING TIME*/
             /*&& not reproducing*/)
         {
@@ -106,6 +98,14 @@ public class FishBehaviour : MonoBehaviour
         else if (fishHealth.currentFoodAmount > (fishHealth.initialFood / 100 * 66))
         {
             fishDestinationTarget = movingTarget;
+        }
+
+        // FISH REPRODUCTIVE STATE SWITCH
+        if (fishHealth.currentFoodAmount >= (fishHealth.initialFood /100 * 50) &&
+            currentFishState != FishState.Feeding &&
+            canReproduce) // ADD FISH AGE CHECK
+        {
+            currentFishState = FishState.ReadyToReproduce;
         }
     }
   
@@ -172,7 +172,7 @@ public class FishBehaviour : MonoBehaviour
                         averageCentre += fish.transform.position;
                         localGroupSize++;
 
-                        if (neighbourDistance < 1.0f) // How close each fish should be before they should begin avoiding
+                        if (neighbourDistance < 1.5f) // How close each fish should be before they should begin avoiding
                         {
                             averageAvoid = averageAvoid + (this.transform.position - fish.transform.position);
                         }
@@ -262,7 +262,7 @@ public class FishBehaviour : MonoBehaviour
             }
         }
 
-        if (closestDistance <= manager.awarenessRange && currentFishState == FishState.ReadyToReproduce) // Check if the fish has another fish nearby and this fish is ready to reproduce ADD CHECKS FOR FOOD AMOUNTS
+        if (closestDistance <= manager.awarenessRange && currentFishState == FishState.ReadyToReproduce && canReproduce) // Check if the fish has another fish nearby and this fish is ready to reproduce ADD CHECKS FOR FOOD AMOUNTS
         {
             currentFishState = FishState.Reproducing; // Change state to reproducing
         }
@@ -273,8 +273,11 @@ public class FishBehaviour : MonoBehaviour
 
             if (gestationPeriod <= 0)
             {
-                manager.allFish.Add(Instantiate(manager.fishPrefab, manager.GenerateNewSpawnPosition(), Quaternion.identity)); // Instantiate the fish at that position and add it to the listy 
-                Debug.Log("Reproduced");
+                manager.allFish.Add(Instantiate(manager.fishPrefab, transform.position, Quaternion.identity)); // Instantiate the fish at that position and add it to the listy 
+
+                fishHealth.ModifyFood(reproductionCost); // How much food is removed upon reproduciton
+
+                canReproduce = false;
 
                 GenerateNewGestationPeriod();
                 currentFishState = FishState.Roaming; // Change state back to roaming

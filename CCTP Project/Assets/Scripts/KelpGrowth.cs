@@ -48,6 +48,7 @@ public class KelpGrowth : MonoBehaviour
                 transform.localScale.z >= targetScale.z)
             {
                 isGrowing = false;
+                gameObject.tag = "Kelp";
                 kelp.canBeEaten = true;
             }
         }

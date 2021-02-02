@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 1840628930304503121}
   - component: {fileID: 7518785925671073347}
   - component: {fileID: 6227490849305420619}
+  - component: {fileID: 863615058376083006}
   m_Layer: 2
   m_Name: Fish Model
   m_TagString: Fish
@@ -81,6 +82,18 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &863615058376083006
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2875883750074863744}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ae814ad29007a0f428d2ecc94651ebf2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &5397941417723935601
 GameObject:
   m_ObjectHideFlags: 0
@@ -168,6 +181,8 @@ MonoBehaviour:
   movingTarget: {fileID: 0}
   currentFishState: 0
   fishHealth: {fileID: 0}
+  canReproduce: 0
+  reproductionCost: -150
   closestDistance: 0
   gestationPeriod: 0
 --- !u!114 &6743514649941562778
@@ -184,4 +199,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   initialFood: 500
   currentFoodAmount: 0
-  hungerRate: 2
+  hungerRate: 2.5
+  currentAge: 0
+  ageToDie: 0
+  ageRate: 2

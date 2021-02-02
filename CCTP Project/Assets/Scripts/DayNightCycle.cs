@@ -24,6 +24,6 @@ public class DayNightCycle : MonoBehaviour
     void ChangeTime()
     {
         timeOfDay += Time.deltaTime * timeScale;
-        timeOfDay %= 2400; // Clamp between 0-24
+        timeOfDay %= 1440; // Clamp between 0-24
     }
 }
