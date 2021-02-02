@@ -45,7 +45,7 @@ public class SharkBehaviour : MonoBehaviour
         {
             if (overlappedObject.gameObject == target.gameObject) // Check if the overlapped object is the current target fish
             {
-                //Destroy(overlappedObject.gameObject);
+                Destroy(overlappedObject.gameObject);
 
                 UpdateTarget();
             }

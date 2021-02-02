@@ -79,6 +79,7 @@ public class FishBehaviour : MonoBehaviour
 
         if (currentFishState == FishState.Feeding)
         {
+            Debug.Log("Hungry");
             Feeding();
         }
                 
@@ -127,7 +128,7 @@ public class FishBehaviour : MonoBehaviour
         // FISH REPRODUCTIVE STATE SWITCH
         if (fishHealth.currentFoodAmount >= (fishHealth.initialFood /100 * 50) &&
             currentFishState != FishState.Feeding &&
-            canReproduce) // ADD FISH AGE CHECK
+            canReproduce) // Add check to ensure it isn't only in a scene with female fish
         {
             currentFishState = FishState.ReadyToReproduce;
         }

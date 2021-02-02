@@ -28,7 +28,7 @@ public class FishHealth : MonoBehaviour
         currentAge = 0;
         ageToDie = Random.Range(ageToDieMin, ageToDieMax);
 
-        if(Random.value < 0.35f)
+        if(Random.value < 0.5f)
         {
             male = true;
             female = false;
@@ -62,11 +62,12 @@ public class FishHealth : MonoBehaviour
         }
     }
 
+    // Age related behaviour including reproduction bracket and death
     void AgeFish()
     {
         currentAge += ageRate * Time.deltaTime;
 
-        if (currentAge >= 200 && timesReproduced != 3 && female) // If the fish is of age, hasn't reproduced too many times and is a female
+        if (currentAge >= 200 && timesReproduced != 2 && female) // If the fish is of age, hasn't reproduced too many times and is a female
         {
             fishBehaviour.canReproduce = true;
         }
