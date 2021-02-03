@@ -19,6 +19,7 @@ public class EnvironmentManager : MonoBehaviour
     public bool medium;
     public bool fast;
     [SerializeField] private float timeBetweenSpawns;
+    public TextMeshProUGUI currentKelpCount;
 
     Vector3 spawnPosition;
 
@@ -65,6 +66,8 @@ public class EnvironmentManager : MonoBehaviour
 
     private void Update()
     {
+        currentKelpCount.text = "Current Kelp Count: " + allKelp.Count.ToString();
+        
         KelpRespawnTimer();
     }
 

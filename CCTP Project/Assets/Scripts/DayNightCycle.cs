@@ -10,18 +10,27 @@ public class DayNightCycle : MonoBehaviour
     public float timeOfDay;
     public int timeScale = 1;
     public TextMeshProUGUI timeText;
-    public GraphWindow graph;
+    public GraphWindow fishGraph;
     public GameObject fishGraphCanvas;
+    public GraphWindow kelpGraph;
+    public GameObject kelpGraphCanvas;
 
     FishGroupManager fishManager;
+    EnvironmentManager environmentManager;
 
     private void Awake()
     {
         fishGraphCanvas.SetActive(true);
         fishGraphCanvas.GetComponent<Canvas>().enabled = false;
         fishManager = GameObject.FindGameObjectWithTag("FishManager").GetComponent<FishGroupManager>();
-        graph.valueList.Add(fishManager.fishCount);
-        graph.ShowGraph(graph.valueList, -1);
+        fishGraph.valueList.Add(fishManager.fishCount);
+        fishGraph.ShowGraph(fishGraph.valueList, -1);
+
+        kelpGraphCanvas.SetActive(true);
+        kelpGraphCanvas.GetComponent<Canvas>().enabled = false;
+        environmentManager = GameObject.FindGameObjectWithTag("EnvironmentManager").GetComponent<EnvironmentManager>();
+        kelpGraph.valueList.Add(environmentManager.kelpCount);
+        kelpGraph.ShowGraph(kelpGraph.valueList, -1);
 
         StartCoroutine("UpdateGraph");
     }
@@ -36,6 +45,7 @@ public class DayNightCycle : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.G))
         {
             fishGraphCanvas.GetComponent<Canvas>().enabled = !fishGraphCanvas.GetComponent<Canvas>().enabled;
+            kelpGraphCanvas.GetComponent<Canvas>().enabled = !kelpGraphCanvas.GetComponent<Canvas>().enabled;
         }
     }
 
@@ -51,8 +61,11 @@ public class DayNightCycle : MonoBehaviour
         {
             yield return new WaitForSeconds(15);
 
-            graph.valueList.Add(fishManager.allFish.Count);
-            graph.ShowGraph(graph.valueList, -1);
+            fishGraph.valueList.Add(fishManager.allFish.Count);
+            fishGraph.ShowGraph(fishGraph.valueList, -1);
+
+            kelpGraph.valueList.Add(environmentManager.allKelp.Count);
+            kelpGraph.ShowGraph(kelpGraph.valueList, -1);
         }
     }
 }

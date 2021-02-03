@@ -10,10 +10,12 @@ public class KelpGrowth : MonoBehaviour
     [SerializeField] Vector3 targetScale;
 
     Kelp kelp;
+    EnvironmentManager manager;
 
     private void Awake()
     {
         kelp = gameObject.GetComponentInChildren<Kelp>();
+        manager = GameObject.FindGameObjectWithTag("EnvironmentManager").GetComponent<EnvironmentManager>();
     }
 
     private void Start()
@@ -52,5 +54,10 @@ public class KelpGrowth : MonoBehaviour
                 kelp.canBeEaten = true;
             }
         }
+    }
+    
+    private void OnDestroy()
+    {
+        manager.allKelp.Remove(this.gameObject);
     }
 }

@@ -19,6 +19,7 @@ public class SimulationStateManager : MonoBehaviour
     public GameObject preSimCanvas;
     public GameObject inSimCanvas;
     public GameObject fishGraphCanvas;
+    public GameObject kelpGraphCanvas;
 
     [Header("Simulation Elements")]
     public EnvironmentManager environmentManager;
@@ -63,6 +64,7 @@ public class SimulationStateManager : MonoBehaviour
     private void Awake()
     {
         fishGraphCanvas.SetActive(false);
+        kelpGraphCanvas.SetActive(false);
 
         currentState = CurrentSimState.PreSim; // Sets the initial state of the sim to be pre-sim.
 

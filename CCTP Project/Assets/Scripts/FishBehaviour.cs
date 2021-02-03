@@ -275,6 +275,7 @@ public class FishBehaviour : MonoBehaviour
     void Reproduction()
     {
         float tempDistance;
+        int numberOfSpawn = Random.Range(1, 2);
 
         Collider[] overlappedObjects = Physics.OverlapSphere(transform.position, manager.awarenessRange);
         
@@ -307,7 +308,10 @@ public class FishBehaviour : MonoBehaviour
 
             if (gestationPeriod <= 0)
             {
-                manager.allFish.Add(Instantiate(manager.fishPrefab, transform.position, Quaternion.identity)); // Instantiate the fish at that position and add it to the listy 
+                for (int i = 0; i < numberOfSpawn; i++)
+                {
+                    manager.allFish.Add(Instantiate(manager.fishPrefab, transform.position, Quaternion.identity)); // Instantiate the fish at that position and add it to the listy 
+                }
 
                 fishHealth.ModifyFood(reproductionCost); // How much food is removed upon reproduciton
                 fishHealth.timesReproduced++;
