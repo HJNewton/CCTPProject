@@ -12,6 +12,8 @@ TagManager:
   - SimulationStateManager
   - Kelp
   - EnvironmentManager
+  - FishTarget
+  - SharkTarget
   layers:
   - Default
   - TransparentFX

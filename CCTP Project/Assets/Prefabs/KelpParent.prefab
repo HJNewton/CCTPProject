@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3469047650693430974}
   - component: {fileID: 8544939436780068160}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: KelpParent
   m_TagString: Untagged
   m_Icon: {fileID: 0}

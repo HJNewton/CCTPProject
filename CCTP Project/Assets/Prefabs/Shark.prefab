@@ -39,7 +39,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4574767980339678166}
+  - component: {fileID: 8192613796973444536}
+  - component: {fileID: 2768074388501087102}
   - component: {fileID: 7070402652088840856}
+  - component: {fileID: 8047677684978950050}
   m_Layer: 2
   m_Name: Shark
   m_TagString: Shark
@@ -63,6 +66,36 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!136 &8192613796973444536
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3762484337191817580}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  m_Radius: 1
+  m_Height: 8
+  m_Direction: 2
+  m_Center: {x: 0, y: 0, z: -1}
+--- !u!54 &2768074388501087102
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3762484337191817580}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 1
 --- !u!114 &7070402652088840856
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -81,12 +114,43 @@ MonoBehaviour:
   turning: 0
   target: {fileID: 0}
   centre: {fileID: 1258676108}
+  sharkMovingTargetPrefab: {fileID: 4572393861540264971, guid: 5c02e48ba0401364c943292e672e78ac, type: 3}
+  sharkDestinationTarget: {fileID: 0}
   eatRadius: 1
   obstacleAvoidanceRange: 2
   sharkLayer:
     serializedVersion: 2
     m_Bits: 4
   outlierDistance: 0
+  currentSharkState: 0
+  sharkHealth: {fileID: 0}
+  canReproduce: 0
+  reproductionCost: 0
+  closestDistance: 0
+  gestationPeriod: 0
+--- !u!114 &8047677684978950050
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3762484337191817580}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a4f67d0fabb05c94891c9ed409756c67, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  male: 0
+  female: 0
+  initialFood: 1500
+  currentFoodAmount: 0
+  hungerRate: 2.5
+  currentAge: 0
+  ageToDieMin: 1500
+  ageToDieMax: 2000
+  ageToDie: 0
+  ageRate: 2
+  timesReproduced: 0
 --- !u!1 &5312783499339065781
 GameObject:
   m_ObjectHideFlags: 0

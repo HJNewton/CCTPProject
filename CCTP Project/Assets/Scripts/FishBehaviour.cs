@@ -4,9 +4,6 @@ using UnityEngine;
 
 public class FishBehaviour : MonoBehaviour
 {
-    // Functionality to add:
-    // Enum states for roaming, eating and reproducing
-    // Only apply rules when roaming; eating and reproducing should be seperate behaviour that potentially makes them vulnerable
     public enum FishState
     {
         Roaming,
@@ -46,7 +43,7 @@ public class FishBehaviour : MonoBehaviour
     private void Awake()
     {
         manager = GameObject.FindGameObjectWithTag("FishManager").GetComponent<FishGroupManager>(); // Fetches the Fish Group Manager script from the Fish Manager object
-        fishDestinationTarget = GameObject.FindGameObjectWithTag("Target");
+        fishDestinationTarget = GameObject.FindGameObjectWithTag("FishTarget");
         fishHealth = this.GetComponent<FishHealth>();
 
         sphereCollider = this.GetComponent<SphereCollider>();
@@ -79,7 +76,6 @@ public class FishBehaviour : MonoBehaviour
 
         if (currentFishState == FishState.Feeding)
         {
-            Debug.Log("Hungry");
             Feeding();
         }
                 
@@ -113,9 +109,7 @@ public class FishBehaviour : MonoBehaviour
     void UpdateState()
     {
         // FISH FEEDING STATE SWITCH
-        if (fishHealth.currentFoodAmount <= (fishHealth.initialFood / 100 * 66) // Hungry when it loses 1/3 of it's food
-            /*&& time == FEEDING TIME*/
-            /*&& not reproducing*/)
+        if (fishHealth.currentFoodAmount <= (fishHealth.initialFood / 100 * 66)) // Hungry when it loses 1/3 of it's food
         {
             currentFishState = FishState.Feeding;
         }
