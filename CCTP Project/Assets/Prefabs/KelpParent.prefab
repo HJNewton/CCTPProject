@@ -47,6 +47,9 @@ MonoBehaviour:
   isGrowing: 0
   growingSpeed: 0.05
   targetScale: {x: 0, y: 0, z: 0}
+  layerMask:
+    serializedVersion: 2
+    m_Bits: 256
 --- !u!1001 &3587695990302249191
 PrefabInstance:
   m_ObjectHideFlags: 0

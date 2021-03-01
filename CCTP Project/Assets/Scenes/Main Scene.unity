@@ -2648,9 +2648,9 @@ GameObject:
   - component: {fileID: 427697368}
   - component: {fileID: 427697367}
   - component: {fileID: 427697366}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Ground Plane
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4430,7 +4430,7 @@ MonoBehaviour:
   m_MinValue: 5
   m_MaxValue: 25
   m_WholeNumbers: 0
-  m_Value: 10
+  m_Value: 15
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -5193,10 +5193,10 @@ MonoBehaviour:
       - m_Target: {fileID: 1409506774}
         m_TargetAssemblyTypeName: EnvironmentManager, Assembly-CSharp
         m_MethodName: DropdownValueHandle
-        m_Mode: 0
+        m_Mode: 2
         m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_ObjectArgument: {fileID: 685665023}
+          m_ObjectArgumentAssemblyTypeName: TMPro.TMP_Dropdown, Unity.TextMeshPro
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -6761,10 +6761,10 @@ MonoBehaviour:
       - m_Target: {fileID: 1686271192}
         m_TargetAssemblyTypeName: FishGroupManager, Assembly-CSharp
         m_MethodName: DropdownValueHandle
-        m_Mode: 3
+        m_Mode: 2
         m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_ObjectArgument: {fileID: 936543176}
+          m_ObjectArgumentAssemblyTypeName: TMPro.TMP_Dropdown, Unity.TextMeshPro
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -10313,6 +10313,9 @@ MonoBehaviour:
   fast: 0
   timeBetweenSpawns: 0
   currentKelpCount: {fileID: 490893476}
+  layerMask:
+    serializedVersion: 2
+    m_Bits: 256
 --- !u!1 &1423026426
 GameObject:
   m_ObjectHideFlags: 0
@@ -12251,7 +12254,7 @@ MonoBehaviour:
   spawnPosition: {x: 0, y: 0, z: 0}
   groundPlane: {fileID: 427697365}
   small: 0
-  medium: 0
+  medium: 1
   large: 0
   minSpeed: 1
   maxSpeed: 2
@@ -14376,7 +14379,7 @@ MonoBehaviour:
   m_MinValue: 5
   m_MaxValue: 25
   m_WholeNumbers: 1
-  m_Value: 10
+  m_Value: 15
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []

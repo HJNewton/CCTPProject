@@ -45,7 +45,6 @@ public class FishGroupManager : MonoBehaviour
 
     private void Start()
     {
-        //allFish = new GameObject[fishCount]; // Sets the array equal to desired number of fish
         fishDestinationTarget = GameObject.FindGameObjectWithTag("Target");
 
         for (int i = 0; i < fishCount; i++)
@@ -71,49 +70,49 @@ public class FishGroupManager : MonoBehaviour
 
         return spawnPosition;
     }
-
-    public void DropdownValueHandle(int val)
+    
+    private void ChangeBoundsAndSizes()
     {
-        if (val == 0)
+        if (small)
+        {
+            bounds = new Vector3(14, 2, 14);
+            groundPlane.transform.localScale = new Vector3(3, 1, 3);
+        }
+
+        else if (medium)
+        {
+            bounds = new Vector3(28, 2, 28);
+            groundPlane.transform.localScale = new Vector3(6, 1, 6);
+        }
+
+        else if (large)
+        {
+            bounds = new Vector3(42, 2, 42);
+            groundPlane.transform.localScale = new Vector3(9, 1, 9);
+        }
+    }
+
+    public void DropdownValueHandle(TMP_Dropdown val)
+    {
+        if (val.value == 0)
         {
             small = true;
             medium = false;
             large = false;
         }
 
-        if (val == 1)
+        if (val.value == 1)
         {
             small = false;
             medium = true;
             large = false;
         }
 
-        if (val == 2)
+        if (val.value == 2)
         {
             small = false;
             medium = false;
             large = true;
-        }
-    }
-
-    private void ChangeBoundsAndSizes()
-    {
-        if (small)
-        {
-            bounds = new Vector3(14, 2, 14);
-            groundPlane.transform.localScale = new Vector3(3,1,3);
-        }
-
-        if (medium)
-        {
-            bounds = new Vector3(28, 2, 28);
-            groundPlane.transform.localScale = new Vector3(6, 1, 6);
-        }
-
-        if (large)
-        {
-            bounds = new Vector3(42, 2, 42);
-            groundPlane.transform.localScale = new Vector3(9, 1, 9);
         }
     }
 }

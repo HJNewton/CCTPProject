@@ -20,14 +20,15 @@ public class EnvironmentManager : MonoBehaviour
     public bool fast;
     [SerializeField] private float timeBetweenSpawns;
     public TextMeshProUGUI currentKelpCount;
-    
+    public LayerMask layerMask;
+
     Vector3 spawnPosition;
 
     FishGroupManager fishManager;
 
     private void Awake()
     {
-        GenerateNewTimeToSpawn(); // Adds an initial value for the kelp respawn timer to use
+        GenerateNewTimeToSpawn(); // Adds an initial value for the kelp respawn timer to use       
     }
 
     private void Start()
@@ -53,9 +54,9 @@ public class EnvironmentManager : MonoBehaviour
 
             RaycastHit hit;
 
-            if (Physics.Raycast(allCoral[i].transform.position, -allCoral[i].transform.up, out hit, Mathf.Infinity))
+            if (Physics.Raycast(allCoral[i].transform.position, -allCoral[i].transform.up, out hit, Mathf.Infinity, layerMask))
             {
-                yPos = hit.point.y;
+                yPos = hit.point.y; 
             }
 
             allCoral[i].transform.position = new Vector3(allCoral[i].transform.position.x, yPos, allCoral[i].transform.position.z);
@@ -110,23 +111,23 @@ public class EnvironmentManager : MonoBehaviour
         return spawnPosition;
     }
 
-    public void DropdownValueHandle(int val)
+    public void DropdownValueHandle(TMP_Dropdown val)
     {
-        if (val == 0)
+        if (val.value == 0)
         {
             slow = true;
             medium = false;
             fast = false;
         }
 
-        if (val == 1)
+        if (val.value == 1)
         {
             slow = false;
             medium = true;
             fast = false;
         }
 
-        if (val == 2)
+        if (val.value == 2)
         {
             slow = false;
             medium = false;

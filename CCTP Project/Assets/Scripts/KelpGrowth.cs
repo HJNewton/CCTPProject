@@ -9,6 +9,7 @@ public class KelpGrowth : MonoBehaviour
     public float growingSpeed;
     [SerializeField] Vector3 targetScale;
     private float yPos;
+    public LayerMask layerMask;
 
     Kelp kelp;
     EnvironmentManager manager;
@@ -31,7 +32,7 @@ public class KelpGrowth : MonoBehaviour
 
         RaycastHit hit;
 
-        if (Physics.Raycast(transform.position, -transform.up, out hit, Mathf.Infinity))
+        if (Physics.Raycast(transform.position, -transform.up, out hit, Mathf.Infinity, layerMask))
         {
             yPos = hit.point.y;
         }
