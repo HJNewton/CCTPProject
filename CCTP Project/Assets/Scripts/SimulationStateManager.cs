@@ -10,6 +10,7 @@ public class SimulationStateManager : MonoBehaviour
     {
         PreSim,
         InSim,
+        EndSim,
     }
 
     [Header("Current State")]
@@ -102,6 +103,13 @@ public class SimulationStateManager : MonoBehaviour
             UpdateEnvironmentValues();
             UpdateFishValues();
             UpdateSharkValues();
+        }
+
+        if (currentState == CurrentSimState.InSim &&
+           (fishManager.allFish.Count <= 0 ||
+            sharkManager.allSharks.Count <= 0))
+        {
+            currentState = CurrentSimState.EndSim;
         }
     }
 

@@ -32,9 +32,9 @@ public class EnvironmentManager : MonoBehaviour
 
     private void Start()
     {
-        if (!medium && !fast)
+        if (!slow && !fast)
         {
-            slow = true;
+            medium = true;
         }
         
         fishManager = GameObject.FindGameObjectWithTag("FishManager").GetComponent<FishGroupManager>();

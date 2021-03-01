@@ -23,6 +23,11 @@ public class ManageSpeedOfTime : MonoBehaviour
             timeSpeed = 5;
         }
 
+        if (Input.GetKeyDown(KeyCode.Alpha4))
+        {
+            timeSpeed = 10;
+        }
+
         if (Input.GetKeyDown(KeyCode.P))
         {
             if (timeSpeed != 0)

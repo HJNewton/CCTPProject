@@ -4,8 +4,6 @@ using UnityEngine;
 
 public class SharkBehaviour : MonoBehaviour
 {
-    // TODO: 
-    // Rewrite comments on this script to be relevant
     public enum SharkState
     {
         Roaming,
@@ -52,9 +50,6 @@ public class SharkBehaviour : MonoBehaviour
         speed = Random.Range(sharkManager.minSpeed, sharkManager.maxSpeed);
         sharkDestinationTarget = Instantiate(sharkMovingTargetPrefab, transform.position, transform.rotation);
         sharkDestinationTarget.transform.position = PickRandomPoint();
-
-        //Invoke("UpdateTarget", 0); // Gets a target on start
-        //InvokeRepeating("UpdateTarget", 0, 5f);
     }
 
     private void Update()
@@ -165,13 +160,11 @@ public class SharkBehaviour : MonoBehaviour
         transform.Translate(0, 0, speed * Time.deltaTime); // Moves the shark
     }
 
-    Vector3 PickRandomPoint()
+    private Vector3 PickRandomPoint()
     {
         return randomNewPosition = new Vector3(Random.Range(-fishManager.bounds.x, fishManager.bounds.x),
                                                Random.Range(-fishManager.bounds.y, fishManager.bounds.y),
                                                Random.Range(-fishManager.bounds.z, fishManager.bounds.z));
-    
-    
     }
 
     void UpdateTargetToFeedOn()
