@@ -8,11 +8,11 @@ public class EnvironmentManager : MonoBehaviour
     [Header("Environment Elements Setup")]
     public GameObject coralPrefab;
     public int coralCount;
-    //public GameObject[] allCoral;
     public List<GameObject> allCoral = new List<GameObject>(); // An array of all fish spawned into the scene
     public GameObject kelpPrefab;
     public int kelpCount;
     public List<GameObject> allKelp = new List<GameObject>(); // A list of all kelp in the scene
+    private float yPos;
 
     [Header("Kelp Respawning")]
     public bool slow;
@@ -20,7 +20,7 @@ public class EnvironmentManager : MonoBehaviour
     public bool fast;
     [SerializeField] private float timeBetweenSpawns;
     public TextMeshProUGUI currentKelpCount;
-
+    
     Vector3 spawnPosition;
 
     FishGroupManager fishManager;
@@ -42,17 +42,23 @@ public class EnvironmentManager : MonoBehaviour
         // Randomly spawn a set amount of coral with a set size, this is essentially going to be the obstacle fish are forced to avoid
         for (int i = 0; i < coralCount; i++)
         {
-            Vector3 newSpawnPos = new Vector3(Random.Range(-fishManager.bounds.x, fishManager.bounds.x),
-                                                -1.5f,
-                                                Random.Range(-fishManager.bounds.z, fishManager.bounds.z));
-            //SpawnPosition();
+            SpawnPosition();
 
             Vector3 coralScale = new Vector3(Random.Range(0.75f, 1.5f), 
                                              Random.Range(0.75f, 1.5f), 
                                              Random.Range(0.75f, 1.5f));
 
-            allCoral.Add(Instantiate(coralPrefab, newSpawnPos, Quaternion.identity));
+            allCoral.Add(Instantiate(coralPrefab, spawnPosition, Quaternion.identity));
             allCoral[i].transform.localScale = coralScale;
+
+            RaycastHit hit;
+
+            if (Physics.Raycast(allCoral[i].transform.position, -allCoral[i].transform.up, out hit, Mathf.Infinity))
+            {
+                yPos = hit.point.y;
+            }
+
+            allCoral[i].transform.position = new Vector3(allCoral[i].transform.position.x, yPos, allCoral[i].transform.position.z);
         }
 
         // Randomly spawn a set amount of kelp with a set size, this is essentially going to be the food for smaller fish to consume
@@ -97,8 +103,9 @@ public class EnvironmentManager : MonoBehaviour
     Vector3 SpawnPosition()
     {
         spawnPosition = new Vector3(Random.Range(-fishManager.bounds.x, fishManager.bounds.x),
-                                                -2.1f,
-                                                Random.Range(-fishManager.bounds.z, fishManager.bounds.z));
+                                                 10f,
+                                                 Random.Range(-fishManager.bounds.z, fishManager.bounds.z));
+        
 
         return spawnPosition;
     }

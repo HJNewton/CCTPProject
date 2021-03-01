@@ -9,7 +9,6 @@ public class SharkBehaviour : MonoBehaviour
     public enum SharkState
     {
         Roaming,
-        Avoiding,
         Feeding,
         ReadyToReproduce,
         Reproducing,
@@ -98,7 +97,7 @@ public class SharkBehaviour : MonoBehaviour
             currentSharkState = SharkState.Feeding;
             UpdateTargetToFeedOn();
         }
-
+    
         else if (sharkHealth.currentFoodAmount > (sharkHealth.initialFood / 100 * 80)) // Shark will stop eating when it is at 80% of its original food, higher than 66% to provide a buffer
         {
             target = sharkDestinationTarget;

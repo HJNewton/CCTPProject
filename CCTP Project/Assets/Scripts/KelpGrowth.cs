@@ -8,6 +8,7 @@ public class KelpGrowth : MonoBehaviour
     public bool isGrowing;
     public float growingSpeed;
     [SerializeField] Vector3 targetScale;
+    private float yPos;
 
     Kelp kelp;
     EnvironmentManager manager;
@@ -27,6 +28,15 @@ public class KelpGrowth : MonoBehaviour
                                   Random.Range(0.75f, 1.5f));
 
         SetInitialScale();
+
+        RaycastHit hit;
+
+        if (Physics.Raycast(transform.position, -transform.up, out hit, Mathf.Infinity))
+        {
+            yPos = hit.point.y;
+        }
+
+        transform.position = new Vector3(transform.position.x, yPos, transform.position.z);
     }
 
     private void Update()

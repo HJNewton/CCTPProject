@@ -419,7 +419,7 @@ GameObject:
   - component: {fileID: 38680836}
   - component: {fileID: 38680835}
   m_Layer: 0
-  m_Name: -- Pre-Sim UI Simulation State Manager --
+  m_Name: -- Simulation State Manager --
   m_TagString: SimulationStateManager
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2904,7 +2904,7 @@ GameObject:
   - component: {fileID: 451687410}
   - component: {fileID: 451687409}
   m_Layer: 0
-  m_Name: Coral Count Text
+  m_Name: Kelp Respawn Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4870,7 +4870,7 @@ MonoBehaviour:
   m_Placeholder: {fileID: 0}
   m_ItemText: {fileID: 1423026428}
   m_ItemImage: {fileID: 0}
-  m_Value: 0
+  m_Value: 1
   m_Options:
     m_Options:
     - m_Text: Slow
@@ -8228,7 +8228,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Slow
+  m_text: Medium
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -9507,7 +9507,7 @@ MonoBehaviour:
   kelpCount: 10
   allKelp: []
   slow: 0
-  medium: 0
+  medium: 1
   fast: 0
   timeBetweenSpawns: 0
   currentKelpCount: {fileID: 490893476}

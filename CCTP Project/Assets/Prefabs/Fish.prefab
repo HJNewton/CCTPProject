@@ -199,7 +199,6 @@ MonoBehaviour:
   reproductionCost: -150
   closestDistance: 0
   gestationPeriod: 0
-  sharkInRange: 0
 --- !u!114 &6743514649941562778
 MonoBehaviour:
   m_ObjectHideFlags: 0
