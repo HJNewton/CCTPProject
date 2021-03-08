@@ -6,8 +6,8 @@ using TMPro;
 public class EnvironmentManager : MonoBehaviour
 {
     [Header("Environment Elements Setup")]
-    public GameObject coralPrefab;
-    public int coralCount;
+    public GameObject[] obstaclePrefabs;
+    public int obstacleCount;
     public List<GameObject> allCoral = new List<GameObject>(); // An array of all fish spawned into the scene
     public GameObject kelpPrefab;
     public int kelpCount;
@@ -41,7 +41,7 @@ public class EnvironmentManager : MonoBehaviour
         fishManager = GameObject.FindGameObjectWithTag("FishManager").GetComponent<FishGroupManager>();
         
         // Randomly spawn a set amount of coral with a set size, this is essentially going to be the obstacle fish are forced to avoid
-        for (int i = 0; i < coralCount; i++)
+        for (int i = 0; i < obstacleCount; i++)
         {
             SpawnPosition();
 
@@ -49,7 +49,9 @@ public class EnvironmentManager : MonoBehaviour
                                              Random.Range(0.75f, 1.5f), 
                                              Random.Range(0.75f, 1.5f));
 
-            allCoral.Add(Instantiate(coralPrefab, spawnPosition, Quaternion.identity));
+            int prefabToSpawn = Random.Range(0, obstaclePrefabs.Length);
+
+            allCoral.Add(Instantiate(obstaclePrefabs[prefabToSpawn], spawnPosition, Quaternion.identity));
             allCoral[i].transform.localScale = coralScale;
 
             RaycastHit hit;

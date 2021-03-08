@@ -120,8 +120,8 @@ public class SimulationStateManager : MonoBehaviour
 
     void UpdateEnvironmentValues()
     {
-        environmentManager.coralCount = (int)coralSlider.value; // Set coral count equal to the value of the coral slider casted to an int
-        coralCountText.text = environmentManager.coralCount.ToString();
+        environmentManager.obstacleCount = (int)coralSlider.value; // Set coral count equal to the value of the coral slider casted to an int
+        coralCountText.text = environmentManager.obstacleCount.ToString();
 
         environmentManager.kelpCount = (int)kelpSlider.value; // Set kelp count equal to the value of the coral slider casted to an int
         kelpCountText.text = environmentManager.kelpCount.ToString();
