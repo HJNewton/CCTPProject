@@ -1,5 +1,98 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &2392253697868151279
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8252954685199016917}
+  - component: {fileID: 5826060803341634651}
+  m_Layer: 0
+  m_Name: Female Fish
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!4 &8252954685199016917
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2392253697868151279}
+  m_LocalRotation: {x: -0.7071068, y: 0, z: -0, w: 0.7071067}
+  m_LocalPosition: {x: -0, y: 0, z: 0}
+  m_LocalScale: {x: 100, y: 100, z: 100}
+  m_Children: []
+  m_Father: {fileID: 5914673809909219227}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!137 &5826060803341634651
+SkinnedMeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2392253697868151279}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 3
+  m_RayTraceProcedural: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 441916079295038247, guid: 4b7d6a8a84d988b44ba1d59b4d8fe9db, type: 3}
+  - {fileID: -736938290813285100, guid: ae67d863b7d0caf438c01166c2dd764d, type: 3}
+  - {fileID: -2076810627799551325, guid: 4b7d6a8a84d988b44ba1d59b4d8fe9db, type: 3}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  serializedVersion: 2
+  m_Quality: 0
+  m_UpdateWhenOffscreen: 0
+  m_SkinnedMotionVectors: 1
+  m_Mesh: {fileID: 2586148439552901436, guid: 4b7d6a8a84d988b44ba1d59b4d8fe9db, type: 3}
+  m_Bones:
+  - {fileID: 1882640092799116883}
+  - {fileID: 7899751846725829470}
+  - {fileID: 6209212220056975157}
+  - {fileID: 1735700620355081580}
+  - {fileID: 7508405857472916769}
+  - {fileID: 6992343807443385078}
+  - {fileID: 6927705034142188993}
+  - {fileID: 754245179539263880}
+  m_BlendShapeWeights: []
+  m_RootBone: {fileID: 1882640092799116883}
+  m_AABB:
+    m_Center: {x: -0.00009718281, y: 0.0072077075, z: -0.009291207}
+    m_Extent: {x: 0.0063655097, y: 0.014200016, z: 0.04028494}
+  m_DirtyAABB: 0
 --- !u!1 &2875883750074863744
 GameObject:
   m_ObjectHideFlags: 0
@@ -11,7 +104,6 @@ GameObject:
   - component: {fileID: 1840628930304503121}
   - component: {fileID: 7518785925671073347}
   - component: {fileID: 6227490849305420619}
-  - component: {fileID: 863615058376083006}
   m_Layer: 2
   m_Name: Fish Model
   m_TagString: Fish
@@ -82,18 +174,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!114 &863615058376083006
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2875883750074863744}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ae814ad29007a0f428d2ecc94651ebf2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!95 &2068536556640663804
 Animator:
   serializedVersion: 3
@@ -220,6 +300,10 @@ MonoBehaviour:
   reproductionCost: -150
   closestDistance: 0
   gestationPeriod: 0
+  personalBounds: {x: 0, y: 0, z: 0}
+  layerMask:
+    serializedVersion: 2
+    m_Bits: 256
 --- !u!114 &6743514649941562778
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -243,6 +327,8 @@ MonoBehaviour:
   ageToDie: 0
   ageRate: 2
   timesReproduced: 0
+  maleFish: {fileID: 2680977764749141981}
+  femaleFish: {fileID: 2392253697868151279}
 --- !u!95 &3985584528814341512
 Animator:
   serializedVersion: 3
@@ -262,6 +348,23 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &120763641406911633
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6439853702974121249}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ae814ad29007a0f428d2ecc94651ebf2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  scaleLowerBounds: {x: 7, y: 7, z: 7}
+  scaleUpperBounds: {x: 9, y: 9, z: 9}
+  initialScale: {x: 1, y: 1, z: 1}
+  targetScale: {x: 0, y: 0, z: 0}
+  growthSpeed: 1
 --- !u!1001 &3848864966616180803
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -408,6 +511,14 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 9
       objectReference: {fileID: 0}
+    - target: {fileID: -1104751823927148627, guid: 4b7d6a8a84d988b44ba1d59b4d8fe9db, type: 3}
+      propertyPath: m_Name
+      value: Male Fish
+      objectReference: {fileID: 0}
+    - target: {fileID: -1104751823927148627, guid: 4b7d6a8a84d988b44ba1d59b4d8fe9db, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 92499127317972611, guid: 4b7d6a8a84d988b44ba1d59b4d8fe9db, type: 3}
       propertyPath: m_Materials.Array.data[1]
       value: 
@@ -430,5 +541,50 @@ GameObject:
 --- !u!4 &5914673809909219227 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 4b7d6a8a84d988b44ba1d59b4d8fe9db, type: 3}
+  m_PrefabInstance: {fileID: 6169822652195969136}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &1882640092799116883 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 5746564759562468899, guid: 4b7d6a8a84d988b44ba1d59b4d8fe9db, type: 3}
+  m_PrefabInstance: {fileID: 6169822652195969136}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &6992343807443385078 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: -5434060629388549498, guid: 4b7d6a8a84d988b44ba1d59b4d8fe9db, type: 3}
+  m_PrefabInstance: {fileID: 6169822652195969136}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &6927705034142188993 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: -5351479199616492111, guid: 4b7d6a8a84d988b44ba1d59b4d8fe9db, type: 3}
+  m_PrefabInstance: {fileID: 6169822652195969136}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &754245179539263880 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: -2312597318660945416, guid: 4b7d6a8a84d988b44ba1d59b4d8fe9db, type: 3}
+  m_PrefabInstance: {fileID: 6169822652195969136}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &7899751846725829470 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: -5170673948360647890, guid: 4b7d6a8a84d988b44ba1d59b4d8fe9db, type: 3}
+  m_PrefabInstance: {fileID: 6169822652195969136}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &6209212220056975157 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: -8956515485712765115, guid: 4b7d6a8a84d988b44ba1d59b4d8fe9db, type: 3}
+  m_PrefabInstance: {fileID: 6169822652195969136}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &1735700620355081580 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: -3636111856864850660, guid: 4b7d6a8a84d988b44ba1d59b4d8fe9db, type: 3}
+  m_PrefabInstance: {fileID: 6169822652195969136}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &7508405857472916769 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: -4779257793315195567, guid: 4b7d6a8a84d988b44ba1d59b4d8fe9db, type: 3}
+  m_PrefabInstance: {fileID: 6169822652195969136}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &2680977764749141981 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: -1104751823927148627, guid: 4b7d6a8a84d988b44ba1d59b4d8fe9db, type: 3}
   m_PrefabInstance: {fileID: 6169822652195969136}
   m_PrefabAsset: {fileID: 0}

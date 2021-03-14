@@ -208,30 +208,9 @@ public class SharkBehaviour : MonoBehaviour
 
     void Reproduction()
     {
-        //float tempDistance;
-        int numberOfSpawn = Random.Range(1, 2);
+        int numberOfSpawn = 1;
 
         bool otherSharksPresent = false;
-
-        //Collider[] overlappedObjects = Physics.OverlapSphere(transform.position, obstacleAvoidanceRange);
-
-        //foreach (Collider overlappedObject in overlappedObjects)
-        //{
-        //    if (overlappedObject.CompareTag("Shark"))
-        //    {
-        //        tempDistance = Vector3.Distance(transform.position, overlappedObject.transform.position); // Check distance for each fish between themself and the current fish
-
-        //        if (closestDistance == 0) // Ensures that closest distance has an initial value otherwise it can never be compared
-        //        {
-        //            closestDistance = tempDistance;
-        //        }
-
-        //        if (tempDistance <= closestDistance) // Check if the new fish that is checked is closer than the most recent closest fish
-        //        {
-        //            closestDistance = tempDistance;
-        //        }
-        //    }
-        //}
 
         for (int i = 0; i < sharkManager.allSharks.Count; i++)
         {

@@ -49,6 +49,23 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &2836119277587929958
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 656782481685031781}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ae814ad29007a0f428d2ecc94651ebf2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  scaleLowerBounds: {x: 0.4, y: 0.4, z: 0.4}
+  scaleUpperBounds: {x: 0.6, y: 0.6, z: 0.6}
+  initialScale: {x: 0.05, y: 0.05, z: 0.05}
+  targetScale: {x: 0, y: 0, z: 0}
+  growthSpeed: 0.005
 --- !u!1 &3762484337191817580
 GameObject:
   m_ObjectHideFlags: 0
@@ -138,7 +155,7 @@ MonoBehaviour:
   sharkDestinationTarget: {fileID: 0}
   eatRadius: 1
   obstacleAvoidanceRange: 2
-  outlierDistance: 0
+  fishDistance: 0
   currentSharkState: 0
   sharkHealth: {fileID: 0}
   canReproduce: 0
@@ -315,6 +332,10 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 0.5
       objectReference: {fileID: 0}
+    - target: {fileID: -6511219549512425945, guid: 24278d99533ff7f45904cf1e8c1565a1, type: 3}
+      propertyPath: m_Materials.Array.data[1]
+      value: 
+      objectReference: {fileID: -1293887620268828351, guid: caac87c9ac4b328478c4ab33e3060f5d, type: 3}
     - target: {fileID: 919132149155446097, guid: 24278d99533ff7f45904cf1e8c1565a1, type: 3}
       propertyPath: m_Name
       value: Shark

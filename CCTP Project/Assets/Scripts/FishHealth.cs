@@ -16,6 +16,7 @@ public class FishHealth : MonoBehaviour
     [SerializeField] private float ageToDie;
     public float ageRate;
     public int timesReproduced;
+    public GameObject maleFish, femaleFish;
 
     FishBehaviour fishBehaviour;
 
@@ -38,6 +39,18 @@ public class FishHealth : MonoBehaviour
         {
             male = false;
             female = true;
+        }
+
+        if (male) 
+        {
+            maleFish.SetActive(true);
+            femaleFish.SetActive(false);
+        }
+
+        if (female)
+        {
+            maleFish.SetActive(false);
+            femaleFish.SetActive(true);
         }
     }
 
