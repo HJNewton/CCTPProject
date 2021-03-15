@@ -76,19 +76,31 @@ public class FishGroupManager : MonoBehaviour
         if (small)
         {
             bounds = new Vector3(14, 2, 14);
-            groundPlane.transform.localScale = new Vector3(3, 1, 3);
+            MeshGenerator.instance.xSize = 30;
+            MeshGenerator.instance.zSize = 30;
+            MeshGenerator.instance.MoveGround(new Vector3(-15, -3, -15));
+            MeshGenerator.instance.CreateShape();
+            MeshGenerator.instance.UpdateMesh();
         }
 
         else if (medium)
         {
             bounds = new Vector3(28, 2, 28);
-            groundPlane.transform.localScale = new Vector3(6, 1, 6);
+            MeshGenerator.instance.xSize = 60;
+            MeshGenerator.instance.zSize = 60;
+            MeshGenerator.instance.MoveGround(new Vector3(-30, -3, -30));
+            MeshGenerator.instance.CreateShape();
+            MeshGenerator.instance.UpdateMesh();
         }
 
         else if (large)
         {
             bounds = new Vector3(42, 2, 42);
-            groundPlane.transform.localScale = new Vector3(9, 1, 9);
+            MeshGenerator.instance.xSize = 90;
+            MeshGenerator.instance.zSize = 90;
+            MeshGenerator.instance.MoveGround(new Vector3(-45, -3, -45));
+            MeshGenerator.instance.CreateShape();
+            MeshGenerator.instance.UpdateMesh();
         }
     }
 

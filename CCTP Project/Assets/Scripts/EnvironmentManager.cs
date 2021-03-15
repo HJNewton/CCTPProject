@@ -8,7 +8,7 @@ public class EnvironmentManager : MonoBehaviour
     [Header("Environment Elements Setup")]
     public GameObject[] obstaclePrefabs;
     public int obstacleCount;
-    public List<GameObject> allCoral = new List<GameObject>(); // An array of all fish spawned into the scene
+    public List<GameObject> allObstacles = new List<GameObject>(); // An array of all fish spawned into the scene
     public GameObject kelpPrefab;
     public int kelpCount;
     public List<GameObject> allKelp = new List<GameObject>(); // A list of all kelp in the scene
@@ -39,29 +39,34 @@ public class EnvironmentManager : MonoBehaviour
         }
         
         fishManager = GameObject.FindGameObjectWithTag("FishManager").GetComponent<FishGroupManager>();
-        
-        // Randomly spawn a set amount of coral with a set size, this is essentially going to be the obstacle fish are forced to avoid
+
+        Invoke("SpawnObjects", 1f);
+    }
+
+    void SpawnObjects()
+    {
+        // Randomly spawn a set amount of obstacles with a set size
         for (int i = 0; i < obstacleCount; i++)
         {
             SpawnPosition();
 
-            Vector3 coralScale = new Vector3(Random.Range(0.75f, 1.5f), 
-                                             Random.Range(0.75f, 1.5f), 
-                                             Random.Range(0.75f, 1.5f));
+            Vector3 obstacleScale = new Vector3(Random.Range(0.75f, 1.5f),
+                                                Random.Range(0.75f, 1.5f),
+                                                Random.Range(0.75f, 1.5f));
 
             int prefabToSpawn = Random.Range(0, obstaclePrefabs.Length);
 
-            allCoral.Add(Instantiate(obstaclePrefabs[prefabToSpawn], spawnPosition, Quaternion.identity));
-            allCoral[i].transform.localScale = coralScale;
+            allObstacles.Add(Instantiate(obstaclePrefabs[prefabToSpawn], spawnPosition, Quaternion.identity));
+            allObstacles[i].transform.localScale = obstacleScale;
 
             RaycastHit hit;
 
-            if (Physics.Raycast(allCoral[i].transform.position, -allCoral[i].transform.up, out hit, Mathf.Infinity, layerMask))
+            if (Physics.Raycast(allObstacles[i].transform.position, -allObstacles[i].transform.up, out hit, Mathf.Infinity, layerMask))
             {
-                yPos = hit.point.y; 
+                yPos = hit.point.y;
             }
 
-            allCoral[i].transform.position = new Vector3(allCoral[i].transform.position.x, yPos, allCoral[i].transform.position.z);
+            allObstacles[i].transform.position = new Vector3(allObstacles[i].transform.position.x, yPos, allObstacles[i].transform.position.z);
         }
 
         // Randomly spawn a set amount of kelp with a set size, this is essentially going to be the food for smaller fish to consume

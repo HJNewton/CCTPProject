@@ -75,11 +75,6 @@ public class FishBehaviour : MonoBehaviour
             Feeding();
         }
 
-        //if (currentFishState == FishState.Avoiding)
-        //{
-        //    Avoidance script call here
-        //}
-
         if (currentFrame >= 15) // Applies boids rules every 15 frames as long as the fish isnt turning
         {
             if (!turning)
@@ -111,7 +106,24 @@ public class FishBehaviour : MonoBehaviour
             currentFishState = FishState.ReadyToReproduce;
         }
     }
-  
+
+    private void OnTriggerStay(Collider other)
+    {
+        if (other.gameObject.CompareTag("Shark"))
+        {
+            currentFishState = FishState.Avoiding;
+            AvoidSharks(other.gameObject);
+        }    
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.gameObject.CompareTag("Shark"))
+        {
+            currentFishState = FishState.Roaming;
+        }
+    }
+
     void Movement()
     {
         // Generates a bounds that the fish should stay inside of
@@ -120,6 +132,7 @@ public class FishBehaviour : MonoBehaviour
         RaycastHit hit;
 
         direction = fishDestinationTarget.transform.position - transform.position;
+        
 
         if (!bounds.Contains(transform.position)) // Checks if fish is out of bounds
         {
@@ -207,12 +220,6 @@ public class FishBehaviour : MonoBehaviour
         }
     }
 
-    //void SharkAvoidance(GameObject sharkToAvoid)
-    //{
-    //    turning = true;
-    //    direction = Vector3.Reflect(this.transform.forward, sharkToAvoid.transform.position.normalized); // Deflects the fish away from the object it is going to hit by reflecting the angle in a "<" like fashion (incoming angle at the top, reflected towards the bottom for example)
-    //}
-
     void Feeding()
     {
         GameObject[] kelpInScene;
@@ -293,6 +300,11 @@ public class FishBehaviour : MonoBehaviour
         gestationPeriod = Random.Range(5, 15); // Get reproductive timer on this fish
 
         return gestationPeriod;
+    }
+
+    private void AvoidSharks(GameObject shark)
+    {
+
     }
 
     private void OnDestroy()

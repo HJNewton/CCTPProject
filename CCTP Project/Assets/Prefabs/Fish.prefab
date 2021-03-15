@@ -254,9 +254,9 @@ SphereCollider:
   m_GameObject: {fileID: 5397941417723935601}
   m_Material: {fileID: 0}
   m_IsTrigger: 1
-  m_Enabled: 0
+  m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.5
+  m_Radius: 50
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!54 &5820971954665577427
 Rigidbody:
@@ -300,10 +300,6 @@ MonoBehaviour:
   reproductionCost: -150
   closestDistance: 0
   gestationPeriod: 0
-  personalBounds: {x: 0, y: 0, z: 0}
-  layerMask:
-    serializedVersion: 2
-    m_Bits: 256
 --- !u!114 &6743514649941562778
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -364,7 +360,7 @@ MonoBehaviour:
   scaleUpperBounds: {x: 9, y: 9, z: 9}
   initialScale: {x: 1, y: 1, z: 1}
   targetScale: {x: 0, y: 0, z: 0}
-  growthSpeed: 1
+  growthSpeed: 0.05
 --- !u!1001 &3848864966616180803
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -530,6 +526,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 4b7d6a8a84d988b44ba1d59b4d8fe9db, type: 3}
       propertyPath: m_Name
       value: Fish1
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 4b7d6a8a84d988b44ba1d59b4d8fe9db, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4b7d6a8a84d988b44ba1d59b4d8fe9db, type: 3}
