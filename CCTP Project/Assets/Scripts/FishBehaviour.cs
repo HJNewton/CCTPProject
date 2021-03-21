@@ -107,22 +107,22 @@ public class FishBehaviour : MonoBehaviour
         }
     }
 
-    private void OnTriggerStay(Collider other)
-    {
-        if (other.gameObject.CompareTag("Shark"))
-        {
-            currentFishState = FishState.Avoiding;
-            AvoidSharks(other.gameObject);
-        }    
-    }
+    //private void OnTriggerStay(Collider other)
+    //{
+    //    if (other.gameObject.CompareTag("Shark"))
+    //    {
+    //        currentFishState = FishState.Avoiding;
+    //        AvoidSharks(other.gameObject);
+    //    }    
+    //}
 
-    private void OnTriggerExit(Collider other)
-    {
-        if (other.gameObject.CompareTag("Shark"))
-        {
-            currentFishState = FishState.Roaming;
-        }
-    }
+    //private void OnTriggerExit(Collider other)
+    //{
+    //    if (other.gameObject.CompareTag("Shark"))
+    //    {
+    //        currentFishState = FishState.Roaming;
+    //    }
+    //}
 
     void Movement()
     {

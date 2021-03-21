@@ -4703,15 +4703,15 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_text: "Using the tabs on the left-hand side of the screen, you can edit the initial
-    values for the \nthree primary components of the simulation; primary producers,
+    values for the \nthree main components of the simulation; primary producers,
     first-order consumers and\ntop predators. \n\nTo control the camera in the simulation
     you can use the mouse to look around and W A S D\nin order to move. Additionally,
     you can access the cursor by pressing the ESCAPE key.\n\nWithin the simulation,
-    you can access graphs using the UI displaying the current and past \ninformation
-    for all components within the simulation.\n\nYou can speed up and slow down the
-    simulation by using either the number keys, 1 through \n4, on your keyboard,
-    or you can utilise the buttons on the UI.\n\nPress the START button at the bottom
-    of the left-hand side tab bar to begin the simulation.\n\nEnjoy!"
+    you can access graphs using the G key. These graphs display the\ncurrent and
+    past population details for all components within the simulation.\n\nYou can
+    speed up and slow down the simulation by using either the number keys, 1 through
+    \n4, on your keyboard, or you can utilise the buttons on the UI.\n\nPress the
+    START button at the bottom of the left-hand side tab bar to begin the simulation.\n\nEnjoy!"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -8579,6 +8579,7 @@ MonoBehaviour:
   normalMoveSpeed: 10
   slowMoveFactor: 0.25
   fastMoveFactor: 3
+  lockCursor: 1
 --- !u!1 &963398192
 GameObject:
   m_ObjectHideFlags: 0
@@ -9433,6 +9434,38 @@ RectTransform:
   m_AnchoredPosition: {x: -5, y: 0}
   m_SizeDelta: {x: -20, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!1 &1039082541
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1039082542}
+  m_Layer: 0
+  m_Name: Graph UI
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1039082542
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1039082541}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 2083087081}
+  - {fileID: 1982868474}
+  m_Father: {fileID: 1879748034}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1050645494
 GameObject:
   m_ObjectHideFlags: 0
@@ -16187,8 +16220,7 @@ Transform:
   m_Children:
   - {fileID: 1445761517}
   - {fileID: 1691442735}
-  - {fileID: 2083087081}
-  - {fileID: 1982868474}
+  - {fileID: 1039082542}
   m_Father: {fileID: 0}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -16777,8 +16809,8 @@ RectTransform:
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_Children:
   - {fileID: 1808177879}
-  m_Father: {fileID: 1879748034}
-  m_RootOrder: 3
+  m_Father: {fileID: 1039082542}
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -17430,8 +17462,8 @@ RectTransform:
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_Children:
   - {fileID: 1297301527}
-  m_Father: {fileID: 1879748034}
-  m_RootOrder: 2
+  m_Father: {fileID: 1039082542}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}

@@ -5,6 +5,8 @@ using TMPro;
 
 public class EnvironmentManager : MonoBehaviour
 {
+    public static EnvironmentManager instance = null; // Create a singleton for this mesh generator
+
     [Header("Environment Elements Setup")]
     public GameObject[] obstaclePrefabs;
     public int obstacleCount;
@@ -28,6 +30,16 @@ public class EnvironmentManager : MonoBehaviour
 
     private void Awake()
     {
+        if (instance == null)
+        {
+            instance = this;
+        }
+
+        else if (instance != this)
+        {
+            Destroy(gameObject);
+        }
+
         GenerateNewTimeToSpawn(); // Adds an initial value for the kelp respawn timer to use       
     }
 

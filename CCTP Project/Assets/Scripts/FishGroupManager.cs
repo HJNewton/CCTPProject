@@ -5,6 +5,8 @@ using TMPro;
 
 public class FishGroupManager : MonoBehaviour
 {
+    public static FishGroupManager instance = null; // Create a singleton for this mesh generator
+
     [Header("Fish Spawning Setup")]
     public GameObject fishPrefab; // Fish prefab
     [Range(50.0f, 200.0f)]
@@ -35,6 +37,16 @@ public class FishGroupManager : MonoBehaviour
 
     private void Awake()
     {
+        if (instance == null)
+        {
+            instance = this;
+        }
+
+        else if (instance != this)
+        {
+            Destroy(gameObject);
+        }
+
         if (!small && !large)
         {
             medium = true;

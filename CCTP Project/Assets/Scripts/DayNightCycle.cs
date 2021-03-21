@@ -61,10 +61,10 @@ public class DayNightCycle : MonoBehaviour
         {
             yield return new WaitForSeconds(15);
 
-            fishGraph.valueList.Add(fishManager.allFish.Count);
+            fishGraph.valueList.Add(FishGroupManager.instance.allFish.Count);
             fishGraph.ShowGraph(fishGraph.valueList, -1);
 
-            kelpGraph.valueList.Add(environmentManager.allKelp.Count);
+            kelpGraph.valueList.Add(EnvironmentManager.instance.allKelp.Count);
             kelpGraph.ShowGraph(kelpGraph.valueList, -1);
         }
     }

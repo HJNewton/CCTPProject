@@ -13,7 +13,9 @@ public class PlayerController : MonoBehaviour
 
     private float rotationX = 0.0f;
     private float rotationY = 0.0f;
-    
+
+    public bool lockCursor = true;
+
     void Start()
     {
         Cursor.lockState = CursorLockMode.Locked;
@@ -21,7 +23,19 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     {
-        Movement();
+        if (Cursor.lockState == CursorLockMode.Locked)
+        {
+            Movement(); 
+        }
+
+        // pressing esc toggles between hide/show
+        if (Input.GetKeyDown(KeyCode.G))
+        {
+            lockCursor = !lockCursor;
+        }
+
+        Cursor.lockState = lockCursor ? CursorLockMode.Locked : CursorLockMode.None;
+        Cursor.visible = !lockCursor;
     }
 
     void Movement()
