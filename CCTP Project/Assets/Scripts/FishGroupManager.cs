@@ -5,7 +5,7 @@ using TMPro;
 
 public class FishGroupManager : MonoBehaviour
 {
-    public static FishGroupManager instance = null; // Create a singleton for this mesh generator
+    public static FishGroupManager instance = null; // Create a singleton for this
 
     [Header("Fish Spawning Setup")]
     public GameObject fishPrefab; // Fish prefab
@@ -71,7 +71,7 @@ public class FishGroupManager : MonoBehaviour
 
     private void Update()
     {
-        currentFishCountText.text = "Current Fish Count: " + allFish.Count.ToString();
+        currentFishCountText.text = "Current First Order Consumer Count: " + allFish.Count.ToString();
     }
 
     public Vector3 GenerateNewSpawnPosition()

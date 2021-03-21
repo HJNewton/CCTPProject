@@ -5,7 +5,7 @@ using TMPro;
 
 public class EnvironmentManager : MonoBehaviour
 {
-    public static EnvironmentManager instance = null; // Create a singleton for this mesh generator
+    public static EnvironmentManager instance = null; // Create a singleton for this
 
     [Header("Environment Elements Setup")]
     public GameObject[] obstaclePrefabs;
@@ -92,7 +92,7 @@ public class EnvironmentManager : MonoBehaviour
 
     private void Update()
     {
-        currentKelpCount.text = "Current Kelp Count: " + allKelp.Count.ToString();
+        currentKelpCount.text = "Current Primary Producer Count: " + allKelp.Count.ToString();
         
         KelpRespawnTimer();
     }

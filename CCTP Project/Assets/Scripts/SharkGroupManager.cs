@@ -1,9 +1,13 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class SharkGroupManager : MonoBehaviour
 {
+    public static SharkGroupManager instance = null; // Create a singleton for this
+
+
     [Header("Shark Spawning Setup")]
     public GameObject sharkPrefab; // Fish prefab
     [Range(0.0f, 10.0f)]
@@ -21,7 +25,23 @@ public class SharkGroupManager : MonoBehaviour
     [Range(0.0f, 10.0f)]
     public float rotationSpeed;
 
+    [Header("Shark UI")]
+    public TextMeshProUGUI currentSharkCountText;
+
     FishGroupManager fishManager;
+
+    private void Awake()
+    {
+        if (instance == null)
+        {
+            instance = this;
+        }
+
+        else if (instance != this)
+        {
+            Destroy(gameObject);
+        }
+    }
 
     private void Start()
     {
@@ -42,5 +62,10 @@ public class SharkGroupManager : MonoBehaviour
 
             allSharks.Add(Instantiate(sharkPrefab, spawnPosition, Quaternion.identity)); // Instantiate the fish at that position and add it to the array
         }
+    }
+
+    private void Update()
+    {
+        currentSharkCountText.text = "Current Top Predator Count: " + allSharks.Count.ToString();
     }
 }

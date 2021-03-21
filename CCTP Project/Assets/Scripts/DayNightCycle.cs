@@ -14,9 +14,14 @@ public class DayNightCycle : MonoBehaviour
     public GameObject fishGraphCanvas;
     public GraphWindow kelpGraph;
     public GameObject kelpGraphCanvas;
+    public GraphWindow sharkGraph;
+    public GameObject sharkGraphCanvas;
+    public GameObject tabBar;
+
 
     FishGroupManager fishManager;
     EnvironmentManager environmentManager;
+    SharkGroupManager sharkManager;
 
     private void Awake()
     {
@@ -32,6 +37,12 @@ public class DayNightCycle : MonoBehaviour
         kelpGraph.valueList.Add(environmentManager.kelpCount);
         kelpGraph.ShowGraph(kelpGraph.valueList, -1);
 
+        sharkGraphCanvas.SetActive(true);
+        sharkGraphCanvas.GetComponent<Canvas>().enabled = false;
+        sharkManager = GameObject.FindGameObjectWithTag("SharkManager").GetComponent<SharkGroupManager>();
+        sharkGraph.valueList.Add(sharkManager.sharkCount);
+        sharkGraph.ShowGraph(sharkGraph.valueList, -1);
+
         StartCoroutine("UpdateGraph");
     }
 
@@ -44,8 +55,10 @@ public class DayNightCycle : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.G))
         {
-            fishGraphCanvas.GetComponent<Canvas>().enabled = !fishGraphCanvas.GetComponent<Canvas>().enabled;
-            kelpGraphCanvas.GetComponent<Canvas>().enabled = !kelpGraphCanvas.GetComponent<Canvas>().enabled;
+            tabBar.SetActive(!tabBar.activeSelf);
+            fishGraphCanvas.GetComponent<Canvas>().enabled = false;
+            kelpGraphCanvas.GetComponent<Canvas>().enabled = false;
+            sharkGraphCanvas.GetComponent<Canvas>().enabled = false;
         }
     }
 
@@ -66,6 +79,9 @@ public class DayNightCycle : MonoBehaviour
 
             kelpGraph.valueList.Add(EnvironmentManager.instance.allKelp.Count);
             kelpGraph.ShowGraph(kelpGraph.valueList, -1);
+
+            sharkGraph.valueList.Add(SharkGroupManager.instance.allSharks.Count);
+            sharkGraph.ShowGraph(sharkGraph.valueList, -1);
         }
     }
 }
