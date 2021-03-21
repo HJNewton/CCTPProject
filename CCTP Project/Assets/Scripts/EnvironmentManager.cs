@@ -40,7 +40,7 @@ public class EnvironmentManager : MonoBehaviour
         
         fishManager = GameObject.FindGameObjectWithTag("FishManager").GetComponent<FishGroupManager>();
 
-        Invoke("SpawnObjects", 1f);
+        Invoke("SpawnObjects", 0f);
     }
 
     void SpawnObjects()
