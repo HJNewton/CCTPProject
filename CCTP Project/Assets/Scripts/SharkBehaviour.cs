@@ -226,7 +226,6 @@ public class SharkBehaviour : MonoBehaviour
             canReproduce) // Check if the fish has another fish nearby and this fish is ready to reproduce ADD CHECKS FOR FOOD AMOUNTS
         {
             currentSharkState = SharkState.Reproducing; // Change state to reproducing
-            Debug.Log("Attempting to reproduce");
         }
 
         if (currentSharkState == SharkState.Reproducing)
@@ -237,7 +236,6 @@ public class SharkBehaviour : MonoBehaviour
             {
                 for (int i = 0; i < numberOfSpawn; i++)
                 {
-                    Debug.Log("SPAWNING");
                     sharkManager.allSharks.Add(Instantiate(sharkManager.sharkPrefab, transform.position, Quaternion.identity)); // Instantiate the fish at that position and add it to the listy 
                 }
 
