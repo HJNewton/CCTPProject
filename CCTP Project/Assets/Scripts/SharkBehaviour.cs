@@ -30,6 +30,7 @@ public class SharkBehaviour : MonoBehaviour
     [SerializeField] private SharkHealth sharkHealth;
 
     [Header("Shark Reproduction Setup")]
+    public int numberOfSpawn = 1;
     public bool canReproduce;
     public float reproductionCost;
     [SerializeField] float closestDistance;
@@ -59,7 +60,7 @@ public class SharkBehaviour : MonoBehaviour
         Movement();
         UpdateState();
         Reproduction();
-
+        
         if (currentSharkState == SharkState.Feeding)
         {
             Feeding();
@@ -105,10 +106,9 @@ public class SharkBehaviour : MonoBehaviour
         // SHARK REPRODUCTIVE STATE SWITCH
         if (sharkHealth.currentFoodAmount >= (sharkHealth.initialFood / 100 * 50) &&
             currentSharkState != SharkState.Feeding &&
-            canReproduce) // Add check to ensure it isn't only in a scene with female sharks
+            canReproduce)
         {
             currentSharkState = SharkState.ReadyToReproduce;
-            Debug.Log("Changed");
         }
     }
 
@@ -208,8 +208,6 @@ public class SharkBehaviour : MonoBehaviour
 
     void Reproduction()
     {
-        int numberOfSpawn = 1;
-
         bool otherSharksPresent = false;
 
         for (int i = 0; i < sharkManager.allSharks.Count; i++)
@@ -223,7 +221,7 @@ public class SharkBehaviour : MonoBehaviour
 
         if (/*closestDistance <= obstacleAvoidanceRange*/ otherSharksPresent &&
             currentSharkState == SharkState.ReadyToReproduce &&
-            canReproduce) // Check if the fish has another fish nearby and this fish is ready to reproduce ADD CHECKS FOR FOOD AMOUNTS
+            canReproduce)
         {
             currentSharkState = SharkState.Reproducing; // Change state to reproducing
         }
@@ -236,16 +234,17 @@ public class SharkBehaviour : MonoBehaviour
             {
                 for (int i = 0; i < numberOfSpawn; i++)
                 {
+                    Debug.Log("Spawned");
                     sharkManager.allSharks.Add(Instantiate(sharkManager.sharkPrefab, transform.position, Quaternion.identity)); // Instantiate the fish at that position and add it to the listy 
                 }
 
                 sharkHealth.ModifyFood(reproductionCost); // How much food is removed upon reproduciton
                 sharkHealth.timesReproduced++;
 
-                canReproduce = false;
-
                 GenerateNewGestationPeriod();
                 currentSharkState = SharkState.Roaming; // Change state back to roaming
+
+                canReproduce = false;
             }
         }
     }

@@ -159,7 +159,7 @@ MonoBehaviour:
   currentSharkState: 0
   sharkHealth: {fileID: 0}
   canReproduce: 0
-  reproductionCost: -450
+  reproductionCost: -500
   closestDistance: 0
   gestationPeriod: 0
 --- !u!114 &8047677684978950050
