@@ -18,7 +18,6 @@ public class DayNightCycle : MonoBehaviour
     public GameObject sharkGraphCanvas;
     public GameObject tabBar;
 
-
     FishGroupManager fishManager;
     EnvironmentManager environmentManager;
     SharkGroupManager sharkManager;

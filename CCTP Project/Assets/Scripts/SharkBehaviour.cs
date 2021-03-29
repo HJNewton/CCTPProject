@@ -104,7 +104,7 @@ public class SharkBehaviour : MonoBehaviour
         }
 
         // SHARK REPRODUCTIVE STATE SWITCH
-        if (sharkHealth.currentFoodAmount >= (sharkHealth.initialFood / 100 * 50) &&
+        if ((sharkHealth.currentFoodAmount >= (sharkHealth.initialFood / 100 * 50) || sharkHealth.currentFoodAmount > reproductionCost) &&
             currentSharkState != SharkState.Feeding &&
             canReproduce)
         {
@@ -219,7 +219,7 @@ public class SharkBehaviour : MonoBehaviour
             }
         }
 
-        if (/*closestDistance <= obstacleAvoidanceRange*/ otherSharksPresent &&
+        if (otherSharksPresent &&
             currentSharkState == SharkState.ReadyToReproduce &&
             canReproduce)
         {
@@ -248,6 +248,7 @@ public class SharkBehaviour : MonoBehaviour
             }
         }
     }
+
     float GenerateNewGestationPeriod()
     {
         gestationPeriod = Random.Range(5, 15); // Get reproductive timer on this fish
