@@ -36,6 +36,7 @@ public class SharkBehaviour : MonoBehaviour
     [SerializeField] float closestDistance;
     [SerializeField] float gestationPeriod;
 
+    Vector3 direction;
     Vector3 randomNewPosition;
 
     private void Awake()
@@ -79,7 +80,7 @@ public class SharkBehaviour : MonoBehaviour
         {
             if (overlappedObject.gameObject == target.gameObject) // Check if the overlapped object is the current target fish
             {
-                sharkHealth.currentFoodAmount += (overlappedObject.GetComponent<FishHealth>().currentFoodAmount / 100 * 10); // Gives the shark 10% of the "biomass" of the fish it eats
+                sharkHealth.currentFoodAmount += (overlappedObject.GetComponent<FishHealth>().currentFoodAmount / 100 * 25); // Gives the shark 10% of the "biomass" of the fish it eats
 
                 Destroy(overlappedObject.gameObject);
 
@@ -126,7 +127,10 @@ public class SharkBehaviour : MonoBehaviour
 
         if (target != null || target != sharkDestinationTarget)
         {
-            Vector3 direction = target.transform.position - transform.position;
+            if (!turning)
+            {
+                direction = target.transform.position - transform.position;
+            }
 
             if (!bounds.Contains(transform.position)) // Checks if shark is out of bounds
             {
@@ -137,16 +141,17 @@ public class SharkBehaviour : MonoBehaviour
             else if (Physics.Raycast(transform.position, this.transform.forward, out hit, obstacleAvoidanceRange) /*|| 
                  Physics.Raycast(transform.position, -this.transform.up, out hit, obstacleAvoidanceRange, sharkLayer)*/) // Checks if shark is going to hit an object
             {
-                turning = true;
-                direction = Vector3.Reflect(this.transform.forward, hit.normal); //Deflects the shark away from the object it is going to hit by reflecting the angle in a "<" like fashion (incoming angle at the top, reflected towards the bottom for example)
+                //turning = true;
+                StartCoroutine("Turning");
+                direction = Vector3.Reflect(direction, hit.normal); //Deflects the shark away from the object it is going to hit by reflecting the angle in a "<" like fashion (incoming angle at the top, reflected towards the bottom for example)
 
                 Debug.DrawRay(this.transform.position, this.transform.forward * obstacleAvoidanceRange, Color.red);
             }
 
-            else
-            {
-                turning = false;
-            }
+            //else
+            //{
+            //    turning = false;
+            //}
 
             if (turning)
             {
@@ -160,6 +165,15 @@ public class SharkBehaviour : MonoBehaviour
         }
 
         transform.Translate(0, 0, speed * Time.deltaTime); // Moves the shark
+    }
+
+    IEnumerator Turning()
+    {
+        turning = true;
+
+        yield return new WaitForSeconds(5);
+
+        turning = false;
     }
 
     private Vector3 PickRandomPoint()
@@ -234,7 +248,7 @@ public class SharkBehaviour : MonoBehaviour
             {
                 for (int i = 0; i < numberOfSpawn; i++)
                 {
-                    Debug.Log("Spawned");
+                    sharkManager.lifetimeSharkCount++;
                     sharkManager.allSharks.Add(Instantiate(sharkManager.sharkPrefab, transform.position, Quaternion.identity)); // Instantiate the fish at that position and add it to the listy 
                 }
 

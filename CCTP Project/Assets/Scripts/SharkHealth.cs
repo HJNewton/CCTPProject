@@ -67,7 +67,7 @@ public class SharkHealth : MonoBehaviour
     {
         currentAge += ageRate * Time.deltaTime;
 
-        if (currentAge >= 500 && timesReproduced < 2 && female) // If the shark is of age, hasn't reproduced too many times and is a female
+        if (currentAge >= 500 && timesReproduced < 1 && female) // If the shark is of age, hasn't reproduced too many times and is a female
         {
             sharkBehaviour.canReproduce = true;
         }

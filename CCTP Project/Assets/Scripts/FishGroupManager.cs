@@ -34,6 +34,8 @@ public class FishGroupManager : MonoBehaviour
 
     [Header("Fish UI")]
     public TextMeshProUGUI currentFishCountText;
+    public TextMeshProUGUI totalLifetimeAmount;
+    public int lifetimeFishCount;
 
     private void Awake()
     {
@@ -65,6 +67,8 @@ public class FishGroupManager : MonoBehaviour
                                         Random.Range(-bounds.y, bounds.y),
                                         Random.Range(-bounds.z, bounds.z));
 
+            lifetimeFishCount++;
+
             allFish.Add(Instantiate(fishPrefab, spawnPosition, Quaternion.identity)); // Instantiate the fish at that position and add it to the array
         }
     }
@@ -72,6 +76,7 @@ public class FishGroupManager : MonoBehaviour
     private void Update()
     {
         currentFishCountText.text = "Current First Order Consumer Count: " + allFish.Count.ToString();
+        totalLifetimeAmount.text = "Total population since sim start: " + lifetimeFishCount.ToString();
     }
 
     public Vector3 GenerateNewSpawnPosition()

@@ -27,6 +27,8 @@ public class SharkGroupManager : MonoBehaviour
 
     [Header("Shark UI")]
     public TextMeshProUGUI currentSharkCountText;
+    public TextMeshProUGUI totalLifetimeAmount;
+    public int lifetimeSharkCount;
 
     FishGroupManager fishManager;
 
@@ -60,6 +62,7 @@ public class SharkGroupManager : MonoBehaviour
                                                 Random.Range(-fishManager.bounds.y, fishManager.bounds.y),
                                                 Random.Range(-fishManager.bounds.z, fishManager.bounds.z));
 
+            lifetimeSharkCount++;
             allSharks.Add(Instantiate(sharkPrefab, spawnPosition, Quaternion.identity)); // Instantiate the fish at that position and add it to the array
         }
     }
@@ -67,5 +70,6 @@ public class SharkGroupManager : MonoBehaviour
     private void Update()
     {
         currentSharkCountText.text = "Current Top Predator Count: " + allSharks.Count.ToString();
+        totalLifetimeAmount.text = "Total population since sim start:  " + lifetimeSharkCount.ToString();
     }
 }

@@ -13,6 +13,7 @@ public class EnvironmentManager : MonoBehaviour
     public List<GameObject> allObstacles = new List<GameObject>(); // An array of all fish spawned into the scene
     public GameObject kelpPrefab;
     public int kelpCount;
+    private int lifetimeKelpCount;
     public List<GameObject> allKelp = new List<GameObject>(); // A list of all kelp in the scene
     private float yPos;
 
@@ -21,7 +22,10 @@ public class EnvironmentManager : MonoBehaviour
     public bool medium;
     public bool fast;
     [SerializeField] private float timeBetweenSpawns;
+
+    [Header("UI Elements")]
     public TextMeshProUGUI currentKelpCount;
+    public TextMeshProUGUI totalLifetimeAmount;
     public LayerMask layerMask;
 
     Vector3 spawnPosition;
@@ -86,13 +90,14 @@ public class EnvironmentManager : MonoBehaviour
         {
             SpawnPosition();
 
-            allKelp.Add(Instantiate(kelpPrefab, spawnPosition, Quaternion.identity));
+            InstantiateKelp();
         }
     }
 
     private void Update()
     {
         currentKelpCount.text = "Current Primary Producer Count: " + allKelp.Count.ToString();
+        totalLifetimeAmount.text = "Total population since sim start: " + lifetimeKelpCount.ToString();
         
         KelpRespawnTimer();
     }
@@ -113,6 +118,8 @@ public class EnvironmentManager : MonoBehaviour
     void InstantiateKelp()
     {
         SpawnPosition();
+
+        lifetimeKelpCount++;
 
         allKelp.Add(Instantiate(kelpPrefab, spawnPosition, Quaternion.identity));
     }

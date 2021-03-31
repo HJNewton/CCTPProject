@@ -282,6 +282,7 @@ public class FishBehaviour : MonoBehaviour
                 for (int i = 0; i < numberOfSpawn; i++)
                 {
                     manager.allFish.Add(Instantiate(manager.fishPrefab, transform.position, Quaternion.identity)); // Instantiate the fish at that position and add it to the listy 
+                    manager.lifetimeFishCount++;
                 }
 
                 fishHealth.ModifyFood(reproductionCost); // How much food is removed upon reproduciton
