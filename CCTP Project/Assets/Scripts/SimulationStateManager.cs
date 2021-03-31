@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 using TMPro;
 
 public class SimulationStateManager : MonoBehaviour
@@ -116,6 +117,17 @@ public class SimulationStateManager : MonoBehaviour
     public void StartSimulation()
     {
         currentState = CurrentSimState.InSim;
+    }
+
+    public void ReloadSimulation()
+    {
+        Scene scene = SceneManager.GetActiveScene(); 
+        SceneManager.LoadScene(scene.name);
+    }
+
+    public void QuitSimulation()
+    {
+        Application.Quit();
     }
 
     void UpdateEnvironmentValues()

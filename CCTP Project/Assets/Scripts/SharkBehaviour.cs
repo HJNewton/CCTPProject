@@ -222,6 +222,8 @@ public class SharkBehaviour : MonoBehaviour
 
     void Reproduction()
     {
+        numberOfSpawn = Random.Range(1, 2);
+
         bool otherSharksPresent = false;
 
         for (int i = 0; i < sharkManager.allSharks.Count; i++)

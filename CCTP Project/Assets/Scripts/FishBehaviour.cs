@@ -244,7 +244,7 @@ public class FishBehaviour : MonoBehaviour
     void Reproduction()
     {
         float tempDistance;
-        int numberOfSpawn = Random.Range(1, 2);
+        int numberOfSpawn = Random.Range(1, 3);
 
         Collider[] overlappedObjects = Physics.OverlapSphere(transform.position, manager.awarenessRange);
         
