@@ -312,9 +312,4 @@ public class FishBehaviour : MonoBehaviour
     {
         manager.allFish.Remove(this.gameObject);
     }
-
-    private void OnDrawGizmosSelected()
-    {
-        Gizmos.DrawWireSphere(transform.position, manager.awarenessRange);
-    }
 }
