@@ -88,18 +88,18 @@ public class FishBehaviour : MonoBehaviour
     void UpdateState()
     {
         // FISH FEEDING STATE SWITCH
-        if (fishHealth.currentFoodAmount <= (fishHealth.initialFood / 100 * 66)) // Hungry when it loses 1/3 of it's food
+        if (fishHealth.currentNutrientsAmount <= (fishHealth.initialNutrients / 100 * 66))
         {
             currentFishState = FishState.Feeding;
         }
 
-        else if (fishHealth.currentFoodAmount > (fishHealth.initialFood / 100 * 66))
+        else if (fishHealth.currentNutrientsAmount > (fishHealth.initialNutrients / 100 * 66))
         {
             fishDestinationTarget = movingTarget;
         }
 
         // FISH REPRODUCTIVE STATE SWITCH
-        if (fishHealth.currentFoodAmount >= (fishHealth.initialFood /100 * 50) &&
+        if (fishHealth.currentNutrientsAmount >= (fishHealth.initialNutrients /100 * 50) &&
             currentFishState != FishState.Feeding &&
             canReproduce) // Add check to ensure it isn't only in a scene with female fish
         {

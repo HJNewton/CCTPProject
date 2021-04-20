@@ -7,8 +7,8 @@ public class FishHealth : MonoBehaviour
     [Header("Fish Health Stuff")]
     public bool male;
     public bool female;
-    public float initialFood = 200;
-    public float currentFoodAmount;
+    public float initialNutrients;
+    public float currentNutrientsAmount;
     public float hungerRate; // Hunger rate determines how much food is removed per second
     public float currentAge;
     public float ageToDieMin;
@@ -24,7 +24,7 @@ public class FishHealth : MonoBehaviour
     {
         fishBehaviour = GetComponent<FishBehaviour>();
 
-        currentFoodAmount = initialFood;
+        currentNutrientsAmount = initialNutrients;
 
         currentAge = 0;
         ageToDie = Random.Range(ageToDieMin, ageToDieMax);
@@ -62,14 +62,14 @@ public class FishHealth : MonoBehaviour
 
     public void ModifyFood(float foodAmount)
     {
-        currentFoodAmount += foodAmount;
+        currentNutrientsAmount += foodAmount;
     }
 
     void RemoveFood()
     {
-        currentFoodAmount -= hungerRate * Time.deltaTime;
+        currentNutrientsAmount -= hungerRate * Time.deltaTime;
 
-        if (currentFoodAmount <= 0)
+        if (currentNutrientsAmount <= 0)
         {
             Destroy(gameObject);
         }

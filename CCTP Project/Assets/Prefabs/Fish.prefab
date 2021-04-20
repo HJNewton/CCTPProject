@@ -314,8 +314,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   male: 0
   female: 0
-  initialFood: 500
-  currentFoodAmount: 0
+  initialNutrients: 500
+  currentNutrientsAmount: 0
   hungerRate: 2.5
   currentAge: 0
   ageToDieMin: 750
