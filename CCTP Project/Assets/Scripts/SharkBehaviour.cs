@@ -80,7 +80,7 @@ public class SharkBehaviour : MonoBehaviour
         {
             if (overlappedObject.gameObject == target.gameObject) // Check if the overlapped object is the current target fish
             {
-                sharkHealth.currentFoodAmount += (overlappedObject.GetComponent<FishHealth>().currentFoodAmount / 100 * 25); // Gives the shark 10% of the "biomass" of the fish it eats
+                sharkHealth.currentFoodAmount += (overlappedObject.GetComponent<FishHealth>().currentNutrientsAmount / 100 * 25); // Gives the shark 10% of the "biomass" of the fish it eats
 
                 Destroy(overlappedObject.gameObject);
 

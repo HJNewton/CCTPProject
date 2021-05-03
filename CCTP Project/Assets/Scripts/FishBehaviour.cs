@@ -250,7 +250,8 @@ public class FishBehaviour : MonoBehaviour
         
         foreach (Collider overlappedObject in overlappedObjects)
         {
-            if (overlappedObject.CompareTag("Fish"))
+            if (overlappedObject.CompareTag("Fish") && 
+                overlappedObject.GetComponent<FishHealth>().male) // Checks if overlapped object is a fish and is male
             {
                 tempDistance = Vector3.Distance(transform.position, overlappedObject.transform.position); // Check distance for each fish between themself and the current fish
 
@@ -268,7 +269,7 @@ public class FishBehaviour : MonoBehaviour
 
         if (closestDistance <= manager.awarenessRange && 
             currentFishState == FishState.ReadyToReproduce && 
-            canReproduce) // Check if the fish has another fish nearby and this fish is ready to reproduce ADD CHECKS FOR FOOD AMOUNTS
+            canReproduce) // Check if the fish has another fish nearby and this fish is ready to reproduce
         {
             currentFishState = FishState.Reproducing; // Change state to reproducing
         }

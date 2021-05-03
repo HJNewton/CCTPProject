@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class MeshGenerator : MonoBehaviour
 {
+    // Code included in this script was largely implemented with the assistance of the Brackeys YouTube channel.
+    // The tutorial followed can be found here: https://www.youtube.com/watch?v=64NblGkAabk
+
     public static MeshGenerator instance = null; // Create a singleton for this mesh generator
 
     Mesh mesh;
