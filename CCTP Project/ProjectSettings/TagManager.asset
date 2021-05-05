@@ -3,7 +3,18 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - FishManager
+  - Target
+  - SharkManager
+  - Shark
+  - Fish
+  - SimulationStateManager
+  - Kelp
+  - EnvironmentManager
+  - FishTarget
+  - SharkTarget
+  - Ground
   layers:
   - Default
   - TransparentFX
@@ -13,7 +24,7 @@ TagManager:
   - UI
   - 
   - 
-  - 
+  - Ground
   - 
   - 
   - 
